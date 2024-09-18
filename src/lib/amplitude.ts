@@ -1,5 +1,4 @@
-import * as amplitude from "@amplitude/analytics-node"
-import { Identify } from "@amplitude/analytics-node"
+import { Identify, createInstance } from "@amplitude/analytics-node"
 
 class AmplitudeServiceForNode {
   private static instance: AmplitudeServiceForNode
@@ -10,7 +9,7 @@ class AmplitudeServiceForNode {
   // Private constructor for Singleton pattern
   private constructor(apiKey: string) {
     this.apiKey = apiKey
-    this.amplitudeInstance = amplitude.createInstance()
+    this.amplitudeInstance = createInstance()
     this.initialize()
   }
 
@@ -47,13 +46,12 @@ class AmplitudeServiceForNode {
     eventType: string,
     data?: Record<string, unknown>
   ) {
-    this.amplitudeInstance.track({
-      event_type: eventType,
+    const eventProperties = {
+      app_source: "dashboard",
+      ...data,
+    }
+    this.amplitudeInstance.track(eventType, eventProperties, {
       user_id: userId,
-      event_properties: {
-        app_source: "dashboard",
-        ...data,
-      },
     })
   }
 }
