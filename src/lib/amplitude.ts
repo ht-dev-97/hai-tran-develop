@@ -15,6 +15,8 @@ class AmplitudeServiceForNode {
   // Singleton instance getter
   public static getInstance(apiKey: string): AmplitudeServiceForNode {
     if (!AmplitudeServiceForNode.instance) {
+      console.log("vào đây")
+
       AmplitudeServiceForNode.instance = new AmplitudeServiceForNode(apiKey)
     }
     return AmplitudeServiceForNode.instance
