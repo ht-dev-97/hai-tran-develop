@@ -9,15 +9,14 @@ export async function trackEventServer(
 ) {
   // Initialize Amplitude
   const AMPLITUDE_API_KEY = "8ba592c88a86b320747c2645b7289366"
-  const defaultInstance = amplitude.createInstance()
-  defaultInstance.init(AMPLITUDE_API_KEY)
+  amplitude.init(AMPLITUDE_API_KEY)
 
   // Set user properties
   const identifyObj = new amplitude.Identify()
     .set("User ID", "test@amplitude.com")
     .set("Name", "Hai Tran")
 
-  defaultInstance.identify(identifyObj, { user_id: "test1@amplitude.com" })
+  amplitude.identify(identifyObj, { user_id: "test@amplitude.com" })
 
   // Track events with optional properties
   const eventProperties = {
@@ -25,7 +24,5 @@ export async function trackEventServer(
     ...data,
   }
 
-  defaultInstance.track(eventType, eventProperties, {
-    user_id: "test1@amplitude.com",
-  })
+  amplitude.track(eventType, eventProperties, { user_id: "test@amplitude.com" })
 }
