@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+"use server"
+
 import * as amplitude from "@amplitude/analytics-node"
 
 export async function trackEventServer(
