@@ -1,15 +1,14 @@
-import { createInstance, Identify } from "@amplitude/analytics-node"
+import * as amplitude from "@amplitude/analytics-node"
 
 class AmplitudeServiceForNode {
   private static instance: AmplitudeServiceForNode
-  private amplitude
+  private isInitialized: boolean = false
   private apiKey: string
   public hasUser: boolean = false
 
   // Private constructor for Singleton pattern
   private constructor(apiKey: string) {
     this.apiKey = apiKey
-    this.amplitude = createInstance()
     this.initialize()
   }
 
@@ -23,7 +22,8 @@ class AmplitudeServiceForNode {
 
   // Initialize Amplitude (only once)
   private initialize() {
-    this.amplitude.init(this.apiKey)
+    amplitude.init(this.apiKey)
+    this.isInitialized = true
   }
 
   // Set user details (only once)
@@ -32,11 +32,11 @@ class AmplitudeServiceForNode {
     if (this.hasUser) return // Prevent multiple user setups
     const { user_id, name } = userProperties
 
-    const identify = new Identify()
+    const identify = new amplitude.Identify()
       .set("User ID", user_id || "")
       .set("Name", name || "")
 
-    this.amplitude.identify(identify, { user_id: user_id || "" })
+    amplitude.identify(identify, { user_id: user_id || "" })
     this.hasUser = true // Mark user as set
   }
 
@@ -46,7 +46,7 @@ class AmplitudeServiceForNode {
     eventType: string,
     data?: Record<string, unknown>
   ) {
-    this.amplitude.track({
+    amplitude.track({
       event_type: eventType,
       user_id: userId,
       event_properties: {
