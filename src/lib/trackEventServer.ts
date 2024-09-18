@@ -22,5 +22,7 @@ export async function trackEventServer(
     ...data,
   }
 
+  console.log("đã vào", eventProperties)
+
   amplitude.track(eventType, eventProperties, { user_id: "test@amplitude.com" })
 }
