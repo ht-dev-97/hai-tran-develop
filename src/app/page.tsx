@@ -1,24 +1,22 @@
-// import amplitudeServiceForNode from "@/lib/amplitude"
+import { getSession } from "@auth0/nextjs-auth0"
+import Logout from "./components/logout"
+import Login from "./components/login"
 
 export default async function Home() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // const userProperties: any = {
-  //   user_id: "test@amplitude.com",
-  //   name: "Hai Tran",
-  // }
-  // amplitudeServiceForNode.setUser(userProperties)
-  // amplitudeServiceForNode.trackEvent(
-  //   "test@amplitude.com",
-  //   "Test Amplitude Node V",
-  //   { test: "hello" }
-  // )
-
+  const session = await getSession()
+  const user = session?.user
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h2>Hivello</h2>
-        <button>Click me 1</button>
-      </main>
-    </div>
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <h1 className="text-xl font-medium mb-5">Home</h1>
+      <div className="flex items-center gap-5">
+        {user ? (
+          <div className="flex items-center gap-4">
+            <p>{user.email}</p> <Logout />
+          </div>
+        ) : (
+          <Login />
+        )}
+      </div>
+    </main>
   )
 }
