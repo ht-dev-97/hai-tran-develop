@@ -58,7 +58,7 @@ class AmplitudeServiceForNode {
 
 // Ensure the instance is created with the API key
 const amplitudeServiceForNode = AmplitudeServiceForNode.getInstance(
-  "8ba592c88a86b320747c2645b7289366"
+  process.env.AUTH0_BASE_URL || ""
 )
 
 export default amplitudeServiceForNode

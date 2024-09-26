@@ -8,7 +8,7 @@ export async function trackEventServer(
   data?: Record<string, any>
 ) {
   // Initialize Amplitude
-  const AMPLITUDE_API_KEY = "8ba592c88a86b320747c2645b7289366"
+  const AMPLITUDE_API_KEY = process.env.AUTH0_BASE_URL || ""
   amplitude.init(AMPLITUDE_API_KEY)
 
   // Set user properties
