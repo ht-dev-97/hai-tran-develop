@@ -9,15 +9,12 @@ import { NextApiRequest, NextApiResponse } from "next"
 
 export default handleAuth({
   login: async (req: NextApiRequest, res: NextApiResponse) => {
-    const authParams: { connection?: string } = {}
-
-    if (req.query.connection) {
-      authParams.connection = req.query.connection as string
-    }
-
     try {
       await handleLogin(req, res, {
-        authorizationParams: authParams,
+        authorizationParams: {
+          scope: "openid profile email offline_access",
+          prompt: "login",
+        },
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
@@ -27,13 +24,13 @@ export default handleAuth({
   },
   logout: async (req: NextApiRequest, res: NextApiResponse) => {
     try {
-      const currentSession = await getSession(req, res)
-      const currUser = currentSession?.user
+      const session = await getSession(req, res)
+      const user = session?.user
 
       const logoutUrl = `https://${process.env.AUTH0_ISSUER_BASE_URL}/v2/logout?client_id=${process.env.AUTH0_CLIENT_ID}&returnTo=${process.env.AUTH0_BASE_URL}`
 
       await handleLogout(req, res, {
-        returnTo: !currUser ? logoutUrl : process.env.AUTH0_BASE_URL,
+        returnTo: !user ? logoutUrl : process.env.AUTH0_BASE_URL,
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
@@ -45,13 +42,6 @@ export default handleAuth({
     const afterCallback = process.env.AUTH0_BASE_URL
 
     try {
-      if (
-        req.query.error_description ===
-        "Please verify your email before logging in."
-      ) {
-        return res.redirect(`${process.env.AUTH0_BASE_URL}/verify-email`)
-      }
-
       await handleCallback(req, res, {
         redirectUri: afterCallback,
       })
