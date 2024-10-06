@@ -2,7 +2,7 @@
 
 import React from "react"
 
-const VerifyEmailPage = () => {
+const VerifyEmailDemo = () => {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <h1 className="text-xl font-medium mb-5">Verify Email</h1>
@@ -15,4 +15,4 @@ const VerifyEmailPage = () => {
   )
 }
 
-export default VerifyEmailPage
+export default VerifyEmailDemo
