@@ -1,18 +1,9 @@
 import type { Metadata } from "next"
-import localFont from "next/font/local"
-import "./globals.css"
+import "../styles/globals.css"
 import { UserProvider } from "@auth0/nextjs-auth0/client"
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-})
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-})
+import Header from "@/components/layout/header/header"
+import Footer from "@/components/layout/footer/footer"
+import { Abolition, SNPro } from "@/config/fonts/custom-fonts"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,9 +19,13 @@ export default async function RootLayout({
     <html lang="en">
       <UserProvider>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${Abolition.variable} ${SNPro.variable} flex flex-col min-h-screen`}
         >
-          {children}
+          <Header />
+          <main className="flex-1 container mx-auto px-4 py-8 overflow-auto">
+            {children}
+          </main>
+          <Footer />
         </body>
       </UserProvider>
     </html>

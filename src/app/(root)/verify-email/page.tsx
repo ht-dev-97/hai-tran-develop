@@ -1,8 +1,8 @@
 import React from "react"
-import VerifyEmailDemo from "./components/verify-email-demo"
+import VerifyEmailContainer from "./_container"
 
 const VerifyEmail = () => {
-  return <VerifyEmailDemo />
+  return <VerifyEmailContainer />
 }
 
 export default VerifyEmail

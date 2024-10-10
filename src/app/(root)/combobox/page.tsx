@@ -1,14 +1,8 @@
 import React from "react"
-import { ComboboxDemo } from "./components/combobox-demo"
-import TooltipDemo from "./components/tooltip-demo"
+import ComboboxContainer from "./_container"
 
 const Combobox = () => {
-  return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
-      <ComboboxDemo />
-      <TooltipDemo />
-    </div>
-  )
+  return <ComboboxContainer />
 }
 
 export default Combobox

@@ -68,7 +68,10 @@ export function ComboboxDemo() {
                     setValue(currentValue)
                     setOpen(false)
                   }}
-                  className={cn(value === item.id ? "bg-red-500" : "")}
+                  className={cn(
+                    value === item.id && "bg-green-500",
+                    "cursor-pointer"
+                  )}
                 >
                   <div className="flex flex-col items-start gap-2">
                     <div className="flex items-end gap-2">
