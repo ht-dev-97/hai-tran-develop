@@ -47,10 +47,10 @@ export default handleAuth({
         redirectUri: afterCallback,
       })
 
-      const session = await getSession(req, res)
+      // const session = await getSession(req, res)
 
       // Log tokens for debugging
-      console.log("Session", session)
+      // console.log("Session", session)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       console.error("Callback error:", e)
