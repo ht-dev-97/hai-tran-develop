@@ -1,0 +1,3 @@
+// Importing other language files...
+
+export type SVGProps = React.SVGProps<SVGSVGElement>
