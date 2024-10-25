@@ -4,7 +4,7 @@ export const LIST_MENU = [
 ]
 
 export const TOPICS = {
-  'UI NextJS': ['Combobox', 'Auto Scroll', 'Sticky Title'],
+  'UI NextJS': ['Combobox', 'Auto Scroll', 'Sticky Title', 'Carousel'],
   'Route Handlers': ['Environment', 'Host IP'],
   'Global State': ['Zustand'],
 }

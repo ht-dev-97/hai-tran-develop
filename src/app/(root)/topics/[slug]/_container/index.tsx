@@ -8,6 +8,7 @@ import Environment from '../_components/environment'
 import HostIP from '../_components/host-ip'
 import { useParams, useRouter } from 'next/navigation'
 import { ArrowLeftIcon } from 'lucide-react'
+import { CarouselSize } from '../_components/carousel'
 
 const TopicDetailContainer = () => {
   const { slug } = useParams<{ slug: string }>() || { slug: null }
@@ -44,6 +45,7 @@ const renderComponentBySlug = (slug: string) => {
     combobox: Combobox,
     'auto-scroll': AutoScroll,
     'sticky-title': StickyTitle,
+    carousel: CarouselSize,
   }
 
   const Component = componentsMap[slug.toLowerCase()]
