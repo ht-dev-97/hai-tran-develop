@@ -36,21 +36,13 @@ const HomeContainer = () => {
             Ready to start learning?
           </h3>
           <Button asChild>
-            <Link href='/ui-topics' className='inline-flex items-center'>
+            <Link href='/topics' className='inline-flex items-center'>
               Explore UI Topics
               <ChevronRight className='ml-2 h-4 w-4' />
             </Link>
           </Button>
         </section>
       </main>
-
-      <footer className='bg-white border-t border-gray-200 mt-16'>
-        <div className='max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8'>
-          <p className='text-center text-gray-500'>
-            © 2023 Web Development Hub. All rights reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   )
 }
