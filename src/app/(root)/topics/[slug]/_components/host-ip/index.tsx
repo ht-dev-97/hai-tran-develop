@@ -1,9 +1,9 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
-import { clientFetch } from "@/utils/client-fetch"
+import { useState, useEffect } from 'react'
+import { clientFetch } from '@/utils/client-fetch'
 
-const IPComponent = () => {
+const HostIP = () => {
   const [ip, setIp] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
@@ -11,16 +11,16 @@ const IPComponent = () => {
   useEffect(() => {
     const fetchIP = async () => {
       try {
-        const response = await clientFetch.get("/api/ip")
+        const response = await clientFetch.get('/api/ip')
         if (response) {
           const data = await response.json()
           setIp(data.ip)
           setLoading(false)
         }
       } catch (err) {
-        setError("Failed to fetch IP")
+        setError('Failed to fetch IP')
         setLoading(false)
-        console.error("Error fetching IP:", err)
+        console.error('Error fetching IP:', err)
       }
     }
 
@@ -38,4 +38,4 @@ const IPComponent = () => {
   )
 }
 
-export default IPComponent
+export default HostIP
