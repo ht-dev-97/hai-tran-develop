@@ -7,4 +7,14 @@ export const keyframes = {
       transform: 'translateX(-800px)',
     },
   },
+  'text-slide': {
+    '0%': {
+      transform: 'translateX(100%)',
+      opacity: '1',
+    },
+    '100%': {
+      transform: 'translateX(-100%)',
+      opacity: '1',
+    },
+  },
 }

@@ -4,7 +4,7 @@ import { colorBrand } from './src/configs/tailwind-css/colors'
 import { keyframes } from './src/configs/tailwind-css/keyframes'
 import type { Config } from 'tailwindcss'
 
-const config: Config = {
+const config = {
   darkMode: ['class'],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -52,5 +52,5 @@ const config: Config = {
   },
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require('tailwindcss-animate')],
-}
+} satisfies Config
 export default config
