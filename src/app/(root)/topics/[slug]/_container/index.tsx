@@ -1,14 +1,8 @@
 'use client'
 
-import Combobox from '../_components/combobox'
-import AutoScroll from '../_components/auto-scroll'
-import StickyTitle from '../_components/sticky-title'
-import Zustand from '../_components/zustand'
-import Environment from '../_components/environment'
-import HostIP from '../_components/host-ip'
 import { useParams, useRouter } from 'next/navigation'
 import { ArrowLeftIcon } from 'lucide-react'
-import { CarouselSize } from '../_components/carousel'
+import { componentsMap } from '../_constant'
 
 const TopicDetailContainer = () => {
   const { slug } = useParams<{ slug: string }>() || { slug: null }
@@ -38,16 +32,6 @@ const TopicDetailContainer = () => {
 }
 
 const renderComponentBySlug = (slug: string) => {
-  const componentsMap: { [key: string]: React.ComponentType } = {
-    zustand: Zustand,
-    environment: Environment,
-    'host-ip': HostIP,
-    combobox: Combobox,
-    'auto-scroll': AutoScroll,
-    'sticky-title': StickyTitle,
-    carousel: CarouselSize,
-  }
-
   const Component = componentsMap[slug.toLowerCase()]
   return Component ? <Component /> : null
 }
