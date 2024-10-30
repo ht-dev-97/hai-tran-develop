@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/carousel"
 import { useEffect, useState } from "react"
 
-export const CarouselSize = () => {
+const CarouselSize = () => {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
   const [count, setCount] = useState(0)
@@ -64,3 +64,5 @@ export const CarouselSize = () => {
     </div>
   )
 }
+
+export default CarouselSize

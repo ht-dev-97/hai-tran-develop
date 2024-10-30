@@ -1,5 +1,6 @@
 import AutoScroll from "../_components/auto-scroll"
-import { CarouselSize } from "../_components/carousel"
+import CarouselSize from "../_components/carousel"
+
 import Combobox from "../_components/combobox"
 import Environment from "../_components/environment"
 import FormDemo from "../_components/form-demo"
