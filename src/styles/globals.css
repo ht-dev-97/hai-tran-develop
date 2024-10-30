@@ -89,4 +89,8 @@
   .transition-1000ms {
     @apply transition-all duration-1000 ease-linear;
   }
+
+  .paused {
+    animation-play-state: paused;
+  }
 }
