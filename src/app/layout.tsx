@@ -4,6 +4,7 @@ import { UserProvider } from "@auth0/nextjs-auth0/client"
 import { Abolition, SNPro } from "@/configs/fonts/custom-fonts"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
+import { Toaster } from "@/components/ui/sonner"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,6 +26,7 @@ export default async function RootLayout({
           <main className="flex-1 container mx-auto py-8 overflow-auto">
             {children}
           </main>
+          <Toaster />
           <Footer />
         </body>
       </UserProvider>

@@ -1,9 +1,10 @@
-'use client'
+"use client"
 
-import React from 'react'
-import { Button } from '@/components/ui/button'
-import { useCountStore } from '@/stores'
-import { useShallow } from 'zustand/react/shallow'
+import React from "react"
+import { Button } from "@/components/ui/button"
+
+import { useShallow } from "zustand/react/shallow"
+import { useCountStore } from "@/stores"
 
 const Zustand = () => {
   const { count, increment, decrement } = useCountStore(
@@ -15,13 +16,13 @@ const Zustand = () => {
   )
 
   return (
-    <div className='flex flex-col items-center gap-4'>
-      <p className='text-xl font-semibold'>Count: {count}</p>
-      <div className='flex gap-2'>
-        <Button onClick={() => decrement(1)} variant='outline'>
+    <div className="flex flex-col items-center gap-4">
+      <p className="text-xl font-semibold">Count: {count}</p>
+      <div className="flex gap-2">
+        <Button onClick={() => decrement(1)} variant="outline">
           Decrement
         </Button>
-        <Button onClick={() => increment(1)} variant='outline'>
+        <Button onClick={() => increment(1)} variant="outline">
           Increment
         </Button>
       </div>
