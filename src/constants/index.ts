@@ -1,6 +1,7 @@
 export const LIST_MENU = [
   { href: "/", label: "Home" },
   { href: "/topics", label: "Topics" },
+  { href: "/posts", label: "Posts" },
 ]
 
 export const TOPICS = {

@@ -65,7 +65,6 @@ class HttpClient {
     } catch (error) {
       this.handleError(error)
     }
-    return null
   }
 
   public async get(

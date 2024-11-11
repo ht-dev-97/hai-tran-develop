@@ -5,6 +5,7 @@ import { Abolition, SNPro } from "@/configs/fonts/custom-fonts"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
 import { Toaster } from "@/components/ui/sonner"
+import { ThemeProvider } from "@/components/providers/theme-provider"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,18 +18,25 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <UserProvider>
-        <body
-          className={`${Abolition.variable} ${SNPro.variable} flex flex-col min-h-screen`}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-          <Header />
-          <main className="flex-1 container mx-auto py-8 overflow-auto">
-            {children}
-          </main>
-          <Toaster />
-          <Footer />
-        </body>
+          <body
+            className={`${Abolition.variable} ${SNPro.variable} flex flex-col min-h-screen`}
+          >
+            <Header />
+            <main className="flex-1 container mx-auto py-8 overflow-auto">
+              {children}
+            </main>
+            <Toaster />
+            <Footer />
+          </body>
+        </ThemeProvider>
       </UserProvider>
     </html>
   )

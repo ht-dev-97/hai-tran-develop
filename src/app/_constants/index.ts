@@ -1,20 +1,20 @@
-import { Code } from 'lucide-react'
-import { TopicCardProps } from '../_type'
+import { Code } from "lucide-react"
+import { TopicCardProps } from "../_types"
 
 export const TOPICCARD: TopicCardProps[] = [
   {
-    name: 'UI NextJS',
+    name: "UI NextJS",
     icon: Code,
-    color: 'from-pink-500 to-rose-500',
+    color: "from-pink-500 to-rose-500",
   },
   {
-    name: 'Route Handlers',
+    name: "Route Handlers",
     icon: Code,
-    color: 'from-blue-500 to-cyan-500',
+    color: "from-blue-500 to-cyan-500",
   },
   {
-    name: 'Global State',
+    name: "Global State",
     icon: Code,
-    color: 'from-green-500 to-emerald-500',
+    color: "from-green-500 to-emerald-500",
   },
 ]
