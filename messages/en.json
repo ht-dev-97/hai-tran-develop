@@ -1,12 +1,12 @@
 {
   "Layout": {
     "Metadata": {
-      "title": "DevHub",
+      "title": "HT Developer",
       "description": "A community for developers to learn, share, and connect."
     }
   },
   "Header": {
-    "title": "DevHub",
+    "title": "HT Developer",
     "menu": {
       "home": "Home",
       "topics": "Topics",
@@ -14,6 +14,18 @@
     }
   },
   "HomePage": {
-    "title": "Welcome NextJS 14"
+    "title": "Welcome to NextJS 14"
+  },
+  "TopicsPage": {
+    "title": "Explore Web Development Topics"
+  },
+  "TopicPage": {
+    "back": "Back to Topics"
+  },
+  "PostsPage": {
+    "title": "Welcome to My Blog"
+  },
+  "Footer": {
+    "copyright": "HT Developer. All rights reserved."
   }
 }

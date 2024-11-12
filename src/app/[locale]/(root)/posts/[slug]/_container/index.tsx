@@ -9,7 +9,7 @@ const PostContainer = ({ post }: PostContainerProps) => {
   return (
     <article className="p-8 max-w-3xl mx-auto">
       <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-      <div className="text-gray-600 mb-8">
+      <div className="mb-8">
         <p>
           By {post.author} • {post.date}
         </p>

@@ -17,9 +17,7 @@ const TopicBlock = ({ topic }: { topic: string }) => {
           className="w-full aspect-square flex items-center justify-center text-center p-4 shadow-lg transition-shadow hover:shadow-xl"
           style={{ background: backgroundGradient }}
         >
-          <span className="text-white text-lg font-semibold drop-shadow-md">
-            {topic}
-          </span>
+          <span className="text-lg font-semibold drop-shadow-md">{topic}</span>
         </Card>
       </Link>
     </motion.div>

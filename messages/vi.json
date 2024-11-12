@@ -1,12 +1,12 @@
 {
   "Layout": {
     "Metadata": {
-      "title": "DevHub",
+      "title": "HT Developer",
       "description": "Một cộng đồng dành cho các nhà phát triển để tìm hiểu, chia sẻ và kết nối."
     }
   },
   "Header": {
-    "title": "DevHub",
+    "title": "HT Developer",
     "menu": {
       "home": "Trang chủ",
       "topics": "Chủ đề",
@@ -14,6 +14,18 @@
     }
   },
   "HomePage": {
-    "title": "Chào mừng NextJS 14"
+    "title": "Chào mừng đến với NextJS 14"
+  },
+  "TopicsPage": {
+    "title": "Khám phá các chủ đề phát triển web"
+  },
+  "TopicPage": {
+    "back": "Trở lại chủ đề"
+  },
+  "PostsPage": {
+    "title": "Chào mừng đến với Blog của tôi"
+  },
+  "Footer": {
+    "copyright": "HT Developer. Tất cả các quyền được bảo lưu."
   }
 }

@@ -2,6 +2,7 @@
 
 import { useLocale } from "next-intl"
 
+import { useMemo } from "react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -11,22 +12,18 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Globe } from "lucide-react"
 import { usePathname, useRouter } from "@/i18n/routing"
-
-const languages = {
-  en: {
-    name: "English",
-    flag: "🇺🇸",
-  },
-  vi: {
-    name: "Tiếng Việt",
-    flag: "🇻🇳",
-  },
-}
+import { cn } from "@/lib/utils"
+import { LANGUAGES } from "@/constants"
 
 export function LanguageSwitcher() {
   const locale = useLocale()
   const router = useRouter()
   const pathname = usePathname()
+
+  const currentLanguage = useMemo(
+    () => LANGUAGES.find((lang) => lang.code === locale),
+    [locale]
+  )
 
   const switchLocale = (newLocale: string) => {
     router.replace(pathname, { locale: newLocale })
@@ -38,22 +35,22 @@ export function LanguageSwitcher() {
         <Button variant="ghost" size="sm" className="gap-2">
           <Globe className="h-4 w-4" />
           <span className="hidden sm:inline-block">
-            {languages[locale as keyof typeof languages].name}
+            {currentLanguage?.name}
           </span>
           <span className="inline-block sm:hidden">
-            {languages[locale as keyof typeof languages].flag}
+            {currentLanguage?.flag}
           </span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[150px]">
-        {Object.entries(languages).map(([key, value]) => (
+      <DropdownMenuContent align="end" className="bg-colorBrand-bg-box">
+        {LANGUAGES.map((lang) => (
           <DropdownMenuItem
-            key={key}
-            onClick={() => switchLocale(key)}
-            className={`gap-2 ${locale === key ? "bg-accent" : ""}`}
+            key={lang.code}
+            onClick={() => switchLocale(lang.code)}
+            className={cn("gap-2", locale === lang.code && "bg-accent")}
           >
-            <span>{value.flag}</span>
-            <span>{value.name}</span>
+            <span>{lang.flag}</span>
+            <span>{lang.name}</span>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
