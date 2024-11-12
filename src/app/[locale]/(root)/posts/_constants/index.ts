@@ -1,4 +1,4 @@
-import { Post } from "../_type"
+import { Post } from "../_types"
 
 export const POSTS: Post[] = [
   {
