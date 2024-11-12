@@ -9,7 +9,7 @@ import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
 import { Toaster } from "@/components/ui/sonner"
 import { ThemeProvider } from "@/components/providers/theme-provider"
-import { locales } from "@/configs/next-intl"
+import { locales } from "@/i18n/request"
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
