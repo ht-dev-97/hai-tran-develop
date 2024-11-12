@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Globe } from "lucide-react"
-import { Link, usePathname } from "@/i18n/routing"
+import { usePathname, useRouter } from "@/i18n/routing"
 
 const languages = {
   en: {
@@ -24,13 +24,12 @@ const languages = {
 }
 
 export function LanguageSwitcher() {
-  const pathname = usePathname()
   const locale = useLocale()
+  const router = useRouter()
+  const pathname = usePathname()
 
   const switchLocale = (newLocale: string) => {
-    const segments = pathname ? pathname.split("/") : []
-    segments[1] = newLocale
-    return segments.join("/")
+    router.replace(pathname, { locale: newLocale })
   }
 
   return (
@@ -48,14 +47,14 @@ export function LanguageSwitcher() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[150px]">
         {Object.entries(languages).map(([key, value]) => (
-          <Link key={key} href={switchLocale(key)}>
-            <DropdownMenuItem
-              className={`gap-2 ${locale === key ? "bg-accent" : ""}`}
-            >
-              <span>{value.flag}</span>
-              <span>{value.name}</span>
-            </DropdownMenuItem>
-          </Link>
+          <DropdownMenuItem
+            key={key}
+            onClick={() => switchLocale(key)}
+            className={`gap-2 ${locale === key ? "bg-accent" : ""}`}
+          >
+            <span>{value.flag}</span>
+            <span>{value.name}</span>
+          </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
