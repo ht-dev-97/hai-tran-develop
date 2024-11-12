@@ -1,7 +1,7 @@
 "use client"
 
 import { useLocale } from "next-intl"
-import Link from "next/link"
+
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Globe } from "lucide-react"
-import { usePathname } from "@/i18n/routing"
+import { Link, usePathname } from "@/i18n/routing"
 
 const languages = {
   en: {

@@ -1,11 +1,12 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import Link from "next/link"
+
 import { Button } from "@/components/ui/button"
 import { ChevronRight } from "lucide-react"
 import TopicCard from "../_components/topic-card"
 import { TOPICCARD } from "../_constants"
+import { Link } from "@/i18n/routing"
 
 const HomeContainer = () => {
   const t = useTranslations("HomePage")
