@@ -1,5 +1,7 @@
 import HomeContainer from "./_container"
 
-export default async function Home() {
+const Home = () => {
   return <HomeContainer />
 }
+
+export default Home

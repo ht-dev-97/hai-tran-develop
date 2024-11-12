@@ -1,15 +1,19 @@
 "use client"
 
-import Link from "next/link"
 import { LIST_MENU } from "@/constants"
-import { usePathname } from "next/navigation"
+
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import UserAction from "./user-action"
 import { ModeToggle } from "./mode-toggle"
+import { useTranslations } from "next-intl"
+import { LanguageSwitcher } from "./language-switcher"
+import { Link, usePathname } from "@/i18n/routing"
 
 export default function Header() {
   const pathname = usePathname()
+
+  const t = useTranslations("Header")
 
   return (
     <header className="shadow-lg">
@@ -17,8 +21,8 @@ export default function Header() {
         <div className="flex justify-between items-center">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <Link href="/" className="text-2xl font-bold text-gray-900">
-                DevHub
+              <Link href="/" className="text-2xl font-bold">
+                {t("title")}
               </Link>
             </div>
           </div>
@@ -34,11 +38,11 @@ export default function Header() {
                     key={item.label}
                     href={item.href}
                     className={cn(
-                      "inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 relative",
+                      "inline-flex items-center px-1 pt-1 text-sm font-medium relative",
                       isActive ? "text-indigo-600" : "hover:text-gray-700"
                     )}
                   >
-                    {item.label}
+                    {t(`menu.${item.name}`)}
                     {isActive && (
                       <motion.div
                         className="absolute top-[100%] left-0 right-0 h-1 bg-indigo-500 rounded-full"
@@ -55,8 +59,9 @@ export default function Header() {
                 )
               })}
             </nav>
-            <UserAction />
+            <LanguageSwitcher />
             <ModeToggle />
+            <UserAction />
           </div>
           <div className="flex items-center sm:hidden">
             {/* Mobile menu button */}

@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react"
 
-import { useMemo } from 'react'
-import Link from 'next/link'
-import { Card } from '@/components/ui/card'
-import { motion } from 'framer-motion'
-import { formatSlug, getRandomGradient } from '@/utils/common'
+import { useMemo } from "react"
+
+import { Card } from "@/components/ui/card"
+import { motion } from "framer-motion"
+import { formatSlug, getRandomGradient } from "@/utils/common"
+import { Link } from "@/i18n/routing"
 
 const TopicBlock = ({ topic }: { topic: string }) => {
   const backgroundGradient = useMemo(() => getRandomGradient(), [])
@@ -13,10 +14,10 @@ const TopicBlock = ({ topic }: { topic: string }) => {
     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
       <Link href={`/topics/${formatSlug(topic)}`}>
         <Card
-          className='w-full aspect-square flex items-center justify-center text-center p-4 shadow-lg transition-shadow hover:shadow-xl'
+          className="w-full aspect-square flex items-center justify-center text-center p-4 shadow-lg transition-shadow hover:shadow-xl"
           style={{ background: backgroundGradient }}
         >
-          <span className='text-white text-lg font-semibold drop-shadow-md'>
+          <span className="text-white text-lg font-semibold drop-shadow-md">
             {topic}
           </span>
         </Card>

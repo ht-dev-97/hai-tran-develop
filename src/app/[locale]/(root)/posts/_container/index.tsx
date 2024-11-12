@@ -1,6 +1,6 @@
-import Link from "next/link"
 import React from "react"
 import { POSTS } from "../_constants"
+import { Link } from "@/i18n/routing"
 
 const PostsContainer = () => {
   return (

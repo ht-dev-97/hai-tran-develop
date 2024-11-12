@@ -1,0 +1,19 @@
+{
+  "Layout": {
+    "Metadata": {
+      "title": "DevHub",
+      "description": "A community for developers to learn, share, and connect."
+    }
+  },
+  "Header": {
+    "title": "DevHub",
+    "menu": {
+      "home": "Home",
+      "topics": "Topics",
+      "posts": "Posts"
+    }
+  },
+  "HomePage": {
+    "title": "Welcome NextJS 14"
+  }
+}
