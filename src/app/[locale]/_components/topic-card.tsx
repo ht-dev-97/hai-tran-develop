@@ -6,7 +6,7 @@ const TopicCard = ({ topic }: { topic: TopicCardProps }) => {
   return (
     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
       <Card className="h-full overflow-hidden">
-        <CardHeader className={`bg-gradient-to-br ${topic.color}`}>
+        <CardHeader className="bg-gradient-orange">
           <CardTitle className="flex items-center justify-between">
             {topic.name}
             <topic.icon className="h-6 w-6" />

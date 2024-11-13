@@ -1,7 +1,6 @@
 import { ReactNode } from "react"
 import { UserProvider } from "@auth0/nextjs-auth0/client"
 import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl"
-import { ThemeProvider } from "@/components/providers/theme-provider"
 
 interface ProvidersWrapperProps {
   children: ReactNode
@@ -17,14 +16,7 @@ export function ProvidersWrapper({
   return (
     <UserProvider>
       <NextIntlClientProvider locale={locale} messages={messages}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        {children}
       </NextIntlClientProvider>
     </UserProvider>
   )

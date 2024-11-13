@@ -8,6 +8,7 @@ import Footer from "@/components/layout/footer"
 import { Toaster } from "@/components/ui/sonner"
 import { locales } from "@/i18n/request"
 import { ProvidersWrapper } from "@/components/providers/providers-wrapper"
+import { ThemeProvider } from "@/components/providers/theme-provider"
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
@@ -44,15 +45,22 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <ProvidersWrapper locale={locale} messages={messages}>
-        <body
-          className={`${Abolition.variable} ${SNPro.variable} flex flex-col min-h-screen`}
-        >
-          <Header />
-          <main className="flex-1 container mx-auto py-8 overflow-auto">
-            {children}
-          </main>
-          <Toaster />
-          <Footer />
+        <body className={`${Abolition.variable} ${SNPro.variable}`}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="w-full flex flex-col min-h-screen">
+              <Header />
+              <main className="flex-1 container mx-auto py-8 overflow-auto">
+                {children}
+              </main>
+              <Toaster />
+              <Footer />
+            </div>
+          </ThemeProvider>
         </body>
       </ProvidersWrapper>
     </html>

@@ -5,5 +5,5 @@ export const colorBrand = {
   "light-black": "#000000CC",
   "dark-black": "#1D1D1D",
   "muted-black": "#313131",
-  "bg-box": "var(--brand-bg-box)",
+  "bg-box": "hsl(var(--brand-bg-box))",
 }
