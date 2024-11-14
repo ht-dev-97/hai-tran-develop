@@ -46,7 +46,7 @@ const UserAction = () => {
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Button asChild className="cursor-pointer">
-                <a href="/api/auth/logout">
+                <a href="/api/auth/logout" aria-label="Logout">
                   <LogOut />
                 </a>
               </Button>
@@ -55,7 +55,7 @@ const UserAction = () => {
         </DropdownMenu>
       ) : (
         <Button asChild className="cursor-pointer">
-          <a href="/api/auth/login">
+          <a href="/api/auth/login" aria-label="Login">
             <User />
           </a>
         </Button>

@@ -39,13 +39,13 @@ export default function Header() {
                     href={item.href}
                     className={cn(
                       "inline-flex items-center px-1 pt-1 text-sm font-medium relative",
-                      isActive && "text-yellow-400"
+                      isActive && "text-colorBrand-primary"
                     )}
                   >
                     {t(`menu.${item.name}`)}
                     {isActive && (
                       <motion.div
-                        className="absolute top-[100%] left-0 right-0 h-1 bg-yellow-400 rounded-full"
+                        className="absolute top-[100%] left-0 right-0 h-1 bg-colorBrand-primary rounded-full"
                         layoutId="activeItem"
                         initial={false}
                         transition={{
