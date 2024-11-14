@@ -29,6 +29,10 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+
+    /* brand colors   */
+    --brand-primary: 48 95% 58%;
+    --brand-text-main: 210 5% 9%;
     --brand-bg-box: 0 0% 99%;
   }
 
@@ -57,17 +61,21 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    /* brand colors   */
+    --brand-primary: 48 95% 58%;
+    --brand-text-main: 0 0% 99%;
     --brand-bg-box: 0 0% 11%;
   }
 }
 
 @layer base {
   * {
-    @apply m-0 list-none scroll-smooth p-0;
+    @apply m-0 p-0 list-none scroll-smooth;
   }
 
   body {
-    @apply font-SNPro text-sm font-normal;
+    @apply font-SNPro text-colorBrand-text-main font-normal;
   }
 }
 

@@ -24,7 +24,7 @@ const TopicDetailContainer = () => {
     <div className="flex flex-col gap-4">
       <button
         onClick={handleBackToTopics}
-        className="w-fit bg-yellow-400 hover:bg-yellow-300 font-bold py-2 px-4 rounded flex items-center"
+        className="w-fit bg-colorBrand-primary hover:bg-colorBrand-primary/80 font-bold py-2 px-4 rounded flex items-center"
       >
         <ArrowLeftIcon className="h-5 w-5 mr-2" />
         {t("back")}

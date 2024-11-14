@@ -1,9 +1,5 @@
 export const colorBrand = {
-  gray: "#8A8894",
-  "light-gray": "#C9C8D3",
-  "dark-gray": "#313131",
-  "light-black": "#000000CC",
-  "dark-black": "#1D1D1D",
-  "muted-black": "#313131",
+  primary: "hsl(var(--brand-primary))",
+  "text-main": "hsl(var(--brand-text-main))",
   "bg-box": "hsl(var(--brand-bg-box))",
 }
