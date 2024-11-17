@@ -54,7 +54,7 @@ export default async function RootLayout({
           >
             <div className="w-full flex flex-col min-h-screen">
               <Header />
-              <main className="flex-1 container mx-auto py-8 overflow-auto">
+              <main className="flex-1 wrapper mx-auto py-8 overflow-auto">
                 {children}
               </main>
               <Toaster />

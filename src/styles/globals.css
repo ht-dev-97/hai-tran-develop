@@ -81,7 +81,7 @@
 
 @layer utilities {
   .wrapper {
-    @apply mx-auto h-full w-full px-[15px] xl:max-w-[1200px] xl:px-0;
+    @apply h-full w-full xl:max-w-[1200px] mx-auto px-[15px] xl:px-0;
   }
 
   .flex-center {

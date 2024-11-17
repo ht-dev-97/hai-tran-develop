@@ -10,7 +10,8 @@
     "menu": {
       "home": "Home",
       "topics": "Topics",
-      "posts": "Posts"
+      "posts": "Posts",
+      "blogs": "Blogs"
     }
   },
   "HomePage": {
