@@ -12,12 +12,12 @@ interface Blog {
 }
 
 export default function getBlogs(basePath: string): Blog[] {
-  const folder = `${basePath}/` // blogs/
+  const folder = `data/${basePath}/` // blogs/
   const files = fs.readdirSync(folder)
   const markdownFiles = files.filter((file) => file.endsWith('.mdx'))
 
   const loadedMarkdownFiles = markdownFiles.map((file) => {
-    const fileContents = fs.readFileSync(`${basePath}/${file}`, 'utf8')
+    const fileContents = fs.readFileSync(`data/${basePath}/${file}`, 'utf8')
     const matterResult = matter(fileContents)
 
     return {

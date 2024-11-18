@@ -25,7 +25,7 @@ interface Params {
 }
 
 const fetchBlogs = (slug: string): BlogContent => {
-  const folder = 'blogs/'
+  const folder = 'data/blogs/'
   const file = `${folder}${slug}.mdx`
   if (!fs.existsSync(file)) {
     notFound()
