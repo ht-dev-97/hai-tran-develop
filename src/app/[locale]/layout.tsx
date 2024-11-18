@@ -1,3 +1,4 @@
+import CursorEffect from '@/components/layout/cursor'
 import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
 import { ProvidersWrapper } from '@/components/providers/providers-wrapper'
@@ -53,6 +54,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <CursorEffect />
             <div className="w-full flex flex-col min-h-screen">
               <Header />
               <main className="flex-1 wrapper mx-auto py-8 overflow-auto">
