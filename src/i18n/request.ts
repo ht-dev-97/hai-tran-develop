@@ -1,7 +1,8 @@
-import { getRequestConfig } from "next-intl/server"
-import { routing } from "./routing"
+import { getRequestConfig } from 'next-intl/server'
 
-export const locales: string[] = ["en", "vi"]
+import { routing } from './routing'
+
+export const locales: string[] = ['en', 'vi']
 
 export default getRequestConfig(async ({ requestLocale }) => {
   // This typically corresponds to the `[locale]` segment
@@ -15,6 +16,6 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   return {
     locale,
-    messages: (await import(`../../messages/${locale}.json`)).default,
+    messages: (await import(`../../messages/${locale}.json`)).default
   }
 })

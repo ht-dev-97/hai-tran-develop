@@ -1,4 +1,4 @@
-import { create } from "zustand"
+import { create } from 'zustand'
 
 type State = {
   count: number
@@ -12,5 +12,5 @@ type Actions = {
 export const useCountStore = create<State & Actions>((set) => ({
   count: 0,
   increment: (qty: number) => set((state) => ({ count: state.count + qty })),
-  decrement: (qty: number) => set((state) => ({ count: state.count - qty })),
+  decrement: (qty: number) => set((state) => ({ count: state.count - qty }))
 }))

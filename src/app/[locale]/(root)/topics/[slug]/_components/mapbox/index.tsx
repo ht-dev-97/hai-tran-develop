@@ -1,17 +1,18 @@
-import React from "react"
-import { LocationSearch } from "./location-search"
-import { Map } from "./map"
-import { LocationSearchType } from "../../_types"
+import React from 'react'
+
+import { LocationSearchType } from '../../_types'
+import { LocationSearch } from './location-search'
+import { Map } from './map'
 
 const LOCATIONS_SEARCH: LocationSearchType[] = [
   {
-    type: "from",
-    label: "From",
+    type: 'from',
+    label: 'From'
   },
   {
-    type: "to",
-    label: "To",
-  },
+    type: 'to',
+    label: 'To'
+  }
 ]
 
 const MapBox = () => {

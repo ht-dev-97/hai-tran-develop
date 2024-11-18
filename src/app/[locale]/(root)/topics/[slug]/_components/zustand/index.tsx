@@ -1,17 +1,16 @@
-"use client"
+'use client'
 
-import React from "react"
-import { Button } from "@/components/ui/button"
-
-import { useShallow } from "zustand/react/shallow"
-import { useCountStore } from "@/stores"
+import { Button } from '@/components/ui/button'
+import { useCountStore } from '@/stores'
+import React from 'react'
+import { useShallow } from 'zustand/react/shallow'
 
 const Zustand = () => {
   const { count, increment, decrement } = useCountStore(
     useShallow((state) => ({
       count: state.count,
       increment: state.increment,
-      decrement: state.decrement,
+      decrement: state.decrement
     }))
   )
 

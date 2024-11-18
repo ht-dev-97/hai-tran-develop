@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { clientFetch } from '@/utils/client-fetch'
+import { useEffect, useState } from 'react'
 
 const HostIP = () => {
   const [ip, setIp] = useState<string | null>(null)

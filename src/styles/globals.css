@@ -71,17 +71,17 @@
 
 @layer base {
   * {
-    @apply m-0 p-0 list-none scroll-smooth;
+    @apply m-0 list-none scroll-smooth p-0;
   }
 
   body {
-    @apply font-SNPro text-colorBrand-text-main font-normal;
+    @apply font-SNPro font-normal text-colorBrand-text-main;
   }
 }
 
 @layer utilities {
   .wrapper {
-    @apply h-full w-full xl:max-w-[1200px] mx-auto px-[15px] xl:px-0;
+    @apply mx-auto h-full w-full px-[15px] xl:max-w-[1200px] xl:px-0;
   }
 
   .flex-center {

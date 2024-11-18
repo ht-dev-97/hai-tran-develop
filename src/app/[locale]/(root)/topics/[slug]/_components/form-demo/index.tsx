@@ -1,33 +1,33 @@
-"use client"
+'use client'
 
-import { Button } from "@/components/ui/button"
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import React, { useRef, useState } from "react"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { toast } from "sonner"
-import { reportBugSchema } from "@/lib/validations/report-bug.schema"
-import { CircleX } from "lucide-react"
+  FormMessage
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { reportBugSchema } from '@/lib/validations/report-bug.schema'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { CircleX } from 'lucide-react'
+import React, { useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import { z } from 'zod'
 
 const FormDemo = () => {
   const [files, setFiles] = useState<
-    Array<{ name: string; size: number; file: File }>
+    { name: string; size: number; file: File }[]
   >([])
 
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const form = useForm<z.infer<typeof reportBugSchema>>({
-    resolver: zodResolver(reportBugSchema),
+    resolver: zodResolver(reportBugSchema)
   })
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,8 +35,8 @@ const FormDemo = () => {
     const maxTotalSize = 20 * 1024 * 1024 // 20MB
 
     const validFiles = selectedFiles.filter((file) => {
-      const isImage = file.type.startsWith("image/")
-      const isVideo = file.type.startsWith("video/")
+      const isImage = file.type.startsWith('image/')
+      const isVideo = file.type.startsWith('video/')
 
       if (!isImage && !isVideo) {
         toast.error(`File ${file.name} is not an image or video.`)
@@ -62,15 +62,15 @@ const FormDemo = () => {
           ...newFiles.map((file) => ({
             name: file.name,
             size: file.size,
-            file,
-          })),
+            file
+          }))
         ]
       })
       if (fileInputRef.current) {
-        fileInputRef.current.value = ""
+        fileInputRef.current.value = ''
       }
     } else {
-      toast.error("Total file size exceeds 20MB.")
+      toast.error('Total file size exceeds 20MB.')
     }
   }
 
@@ -80,9 +80,9 @@ const FormDemo = () => {
 
   const resetFormAndState = () => {
     form.reset({
-      name: "",
-      email: "",
-      message: "",
+      name: '',
+      email: '',
+      message: ''
     })
     form.clearErrors()
     setFiles([])
@@ -95,7 +95,7 @@ const FormDemo = () => {
           const fileData = new Uint8Array(await file.arrayBuffer())
           return {
             data: fileData,
-            filename: file.name,
+            filename: file.name
           }
         })
       )
@@ -104,16 +104,16 @@ const FormDemo = () => {
         name: values.name,
         email: values.email,
         message: values.message,
-        attachments,
+        attachments
       }
 
-      console.log("dataSubmit", dataSubmit)
+      console.log('dataSubmit', dataSubmit)
 
-      toast.success("Successfully submitted")
+      toast.success('Successfully submitted')
       resetFormAndState()
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      toast.error("Failed to submit. Please try again")
+      toast.error('Failed to submit. Please try again')
     }
   }
 
@@ -142,7 +142,7 @@ const FormDemo = () => {
                     type="text"
                     placeholder="Full name"
                     {...field}
-                    value={field.value ?? ""}
+                    value={field.value ?? ''}
                     className="py-[10px] px-[14px] bg-gray-100 rounded-lg text-black font-medium text-sm border-none outline-none placeholder:text-black placeholder:opacity-100"
                   />
                 </FormControl>
@@ -164,7 +164,7 @@ const FormDemo = () => {
                     type="email"
                     placeholder="Email"
                     {...field}
-                    value={field.value ?? ""}
+                    value={field.value ?? ''}
                     className="py-[10px] px-[14px] bg-gray-100 rounded-lg text-black font-medium text-sm border-none outline-none placeholder:text-black placeholder:opacity-100"
                   />
                 </FormControl>
@@ -186,7 +186,7 @@ const FormDemo = () => {
                     rows={6}
                     placeholder="What did you expect?"
                     {...field}
-                    value={field.value ?? ""}
+                    value={field.value ?? ''}
                     className="py-[10px] px-[14px] bg-gray-100 rounded-lg text-black font-medium text-sm border-none outline-none placeholder:text-black placeholder:opacity-100"
                   />
                 </FormControl>

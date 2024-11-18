@@ -1,8 +1,7 @@
-import { ArrowUpRight, CalendarDays, Clock } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Link } from "@/i18n/routing"
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+import { Link } from '@/i18n/routing'
+import { ArrowUpRight, CalendarDays, Clock } from 'lucide-react'
 
 interface Blog {
   title: string
@@ -39,7 +38,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
       </CardContent>
       <CardFooter>
         <div className="flex items-center justify-between w-full">
-          <Badge className={"w-fit"}>
+          <Badge className={'w-fit'}>
             <Clock className="w-4 h-4 me-1" />
             <p className="text-xs">{cook_time}</p>
           </Badge>

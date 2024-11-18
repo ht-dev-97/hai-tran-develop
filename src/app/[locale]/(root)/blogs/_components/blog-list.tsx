@@ -1,7 +1,9 @@
-"use client"
-import { useState } from "react"
-import BlogsSearch from "./blog-search"
-import BlogCard from "./blog-card"
+'use client'
+
+import { useState } from 'react'
+
+import BlogCard from './blog-card'
+import BlogsSearch from './blog-search'
 
 interface Blog {
   title: string
@@ -18,7 +20,7 @@ interface BlogListProps {
 }
 
 const BlogList = ({ blogs }: BlogListProps) => {
-  const [searchVal, setSearchVal] = useState<string>("")
+  const [searchVal, setSearchVal] = useState<string>('')
 
   const filteredBlogs = blogs.filter((blog) =>
     blog.modified_title.includes(searchVal)
