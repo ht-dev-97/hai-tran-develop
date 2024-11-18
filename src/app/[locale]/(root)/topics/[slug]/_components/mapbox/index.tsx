@@ -1,43 +1,37 @@
-import React, { useEffect, useRef } from "react"
-import mapboxgl, { Map as MapboxMap } from "mapbox-gl"
-// import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
+import React from "react"
+import { LocationSearch } from "./location-search"
+import { Map } from "./map"
+import { LocationSearchType } from "../../_types"
 
-import "mapbox-gl/dist/mapbox-gl.css"
-// import "@mapbox/mapbox-gl-geocoder/dist/mapbox-geocoder.css"
+const LOCATIONS_SEARCH: LocationSearchType[] = [
+  {
+    type: "from",
+    label: "From",
+  },
+  {
+    type: "to",
+    label: "To",
+  },
+]
 
-const Mapbox = () => {
-  const mapContainerRef = useRef<HTMLDivElement | null>(null)
-  const mapRef = useRef<MapboxMap | null>(null)
-
-  useEffect(() => {
-    mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN || ""
-
-    if (mapContainerRef.current) {
-      mapRef.current = new mapboxgl.Map({
-        container: mapContainerRef.current,
-        style: "mapbox://styles/mapbox/streets-v12",
-        center: [-79.4512, 43.6568],
-        zoom: 13,
-      })
-
-      // mapRef.current.addControl(
-      //   new MapboxGeocoder({
-      //     accessToken: mapboxgl.accessToken,
-      //     mapboxgl: mapboxgl,
-      //   })
-      // )
-    }
-
-    return () => {
-      if (mapRef.current) {
-        mapRef.current.remove()
-      }
-    }
-  }, [])
-
+const MapBox = () => {
   return (
-    <div ref={mapContainerRef} style={{ height: "500px", width: "500px" }} />
+    <div className="flex min-h-[400px] gap-4">
+      <div className="w-1/3 space-y-4 p-4 rounded-lg shadow">
+        <h1 className="text-2xl font-bold">Location</h1>
+        {LOCATIONS_SEARCH.map((location) => (
+          <LocationSearch
+            key={location.type}
+            type={location.type}
+            label={location.label}
+          />
+        ))}
+      </div>
+      <div className="w-2/3 bg-white rounded-lg shadow">
+        <Map />
+      </div>
+    </div>
   )
 }
 
-export default Mapbox
+export default MapBox
