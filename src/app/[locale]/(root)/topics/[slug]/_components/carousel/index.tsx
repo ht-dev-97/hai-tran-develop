@@ -1,15 +1,15 @@
-"use client"
+'use client'
 
-import { type CarouselApi } from "@/components/ui/carousel"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from '@/components/ui/card'
+import { type CarouselApi } from '@/components/ui/carousel'
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
-import { useEffect, useState } from "react"
+  CarouselPrevious
+} from '@/components/ui/carousel'
+import { useEffect, useState } from 'react'
 
 const CarouselSize = () => {
   const [api, setApi] = useState<CarouselApi>()
@@ -24,7 +24,7 @@ const CarouselSize = () => {
     setCount(api.scrollSnapList().length)
     setCurrent(api.selectedScrollSnap() + 1)
 
-    api.on("select", () => {
+    api.on('select', () => {
       setCurrent(api.selectedScrollSnap() + 1)
     })
   }, [api])
@@ -33,8 +33,8 @@ const CarouselSize = () => {
     <div>
       <Carousel
         opts={{
-          align: "start",
-          loop: true,
+          align: 'start',
+          loop: true
         }}
         setApi={setApi}
         className="w-full max-w-sm mx-auto"

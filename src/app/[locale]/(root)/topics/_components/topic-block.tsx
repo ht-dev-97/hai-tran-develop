@@ -1,8 +1,8 @@
-import React from "react"
-import { Card } from "@/components/ui/card"
-import { motion } from "framer-motion"
-import { formatSlug } from "@/utils/common"
-import { Link } from "@/i18n/routing"
+import { Card } from '@/components/ui/card'
+import { Link } from '@/i18n/routing'
+import { formatSlug } from '@/utils/common'
+import { motion } from 'framer-motion'
+import React from 'react'
 
 const TopicBlock = ({ topic }: { topic: string }) => {
   return (

@@ -1,9 +1,10 @@
-import React from "react"
-import getBlogs from "@/lib/markdown/get-blogs"
-import BlogList from "../_components/blog-list"
+import getBlogs from '@/lib/markdown/get-blogs'
+import React from 'react'
+
+import BlogList from '../_components/blog-list'
 
 const BlogsContainer = () => {
-  const blogs = getBlogs("blogs")
+  const blogs = getBlogs('blogs')
 
   return <BlogList blogs={blogs} />
 }

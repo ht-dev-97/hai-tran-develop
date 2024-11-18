@@ -1,12 +1,12 @@
-import fs from "fs"
-import matter from "gray-matter"
-import { notFound } from "next/navigation"
-import Markdown from "markdown-to-jsx"
-import { Badge } from "@/components/ui/badge"
-import { CalendarDays, Clock } from "lucide-react"
-import { Card, CardHeader } from "@/components/ui/card"
-import getBlogs from "@/lib/markdown/get-blogs"
-import { Link } from "@/i18n/routing"
+import { Badge } from '@/components/ui/badge'
+import { Card, CardHeader } from '@/components/ui/card'
+import { Link } from '@/i18n/routing'
+import getBlogs from '@/lib/markdown/get-blogs'
+import fs from 'fs'
+import matter from 'gray-matter'
+import { CalendarDays, Clock } from 'lucide-react'
+import Markdown from 'markdown-to-jsx'
+import { notFound } from 'next/navigation'
 
 interface BlogData {
   cook_time: string
@@ -25,29 +25,29 @@ interface Params {
 }
 
 const fetchBlogs = (slug: string): BlogContent => {
-  const folder = "blogs/"
+  const folder = 'blogs/'
   const file = `${folder}${slug}.mdx`
   if (!fs.existsSync(file)) {
     notFound()
   }
-  const content = fs.readFileSync(file, "utf8")
+  const content = fs.readFileSync(file, 'utf8')
 
   const result = matter(content)
   return {
     content: result.content,
-    data: result.data as BlogData,
+    data: result.data as BlogData
   }
 }
 
 export async function generateMetadata({ params }: { params: Params }) {
-  const title = params.slug ? ` - ${params.slug}` : ""
+  const title = params.slug ? ` - ${params.slug}` : ''
   return {
-    title: `Blog ${title.replace("-", " ").toUpperCase()}`,
+    title: `Blog ${title.replace('-', ' ').toUpperCase()}`
   }
 }
 
 export async function generateStaticParams() {
-  const blogs = getBlogs("blogs")
+  const blogs = getBlogs('blogs')
   return blogs.map((blog) => ({ slug: blog.slug }))
 }
 
@@ -63,7 +63,7 @@ const BlogDetail = ({ params }: { params: Params }) => {
       </div>
       <div className="col-span-1">
         <div className="text-right mb-2">
-          <Link href={"/blogs"} className="underline font-medium text-sm">
+          <Link href={'/blogs'} className="underline font-medium text-sm">
             Go Back Blogs
           </Link>
         </div>

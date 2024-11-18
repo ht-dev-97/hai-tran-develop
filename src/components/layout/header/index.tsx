@@ -1,19 +1,19 @@
-"use client"
+'use client'
 
-import { LIST_MENU } from "@/constants"
+import { LIST_MENU } from '@/constants'
+import { Link, usePathname } from '@/i18n/routing'
+import { cn } from '@/lib/utils'
+import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
-import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
-import UserAction from "./user-action"
-import { ModeToggle } from "./mode-toggle"
-import { useTranslations } from "next-intl"
-import { LanguageSwitcher } from "./language-switcher"
-import { Link, usePathname } from "@/i18n/routing"
+import { LanguageSwitcher } from './language-switcher'
+import { ModeToggle } from './mode-toggle'
+import UserAction from './user-action'
 
 export default function Header() {
   const pathname = usePathname()
 
-  const t = useTranslations("Header")
+  const t = useTranslations('Header')
 
   return (
     <header className="shadow-lg py-4">
@@ -21,7 +21,7 @@ export default function Header() {
         <div className="flex justify-between items-center">
           <div className="shrink-0 flex items-center">
             <Link href="/" className="text-2xl font-bold">
-              {t("title")}
+              {t('title')}
             </Link>
           </div>
           <div className="flex items-center gap-10">
@@ -36,8 +36,8 @@ export default function Header() {
                     key={item.label}
                     href={item.href}
                     className={cn(
-                      "inline-flex items-center px-1 pt-1 text-sm font-medium relative",
-                      isActive && "text-colorBrand-primary"
+                      'inline-flex items-center px-1 pt-1 text-sm font-medium relative',
+                      isActive && 'text-colorBrand-primary'
                     )}
                   >
                     {t(`menu.${item.name}`)}
@@ -47,9 +47,9 @@ export default function Header() {
                         layoutId="activeItem"
                         initial={false}
                         transition={{
-                          type: "spring",
+                          type: 'spring',
                           stiffness: 380,
-                          damping: 30,
+                          damping: 30
                         }}
                       />
                     )}

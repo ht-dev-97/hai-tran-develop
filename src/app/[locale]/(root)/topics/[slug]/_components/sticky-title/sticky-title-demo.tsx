@@ -40,21 +40,21 @@ const StickyTitleDemo = () => {
   }, [])
 
   return (
-    <div className='min-h-screen p-4 flex flex-col gap-4'>
-      <div className='mb-4'>Scroll down to see the sticky effect</div>
-      <div ref={containerRef} className='bg-gray-100 rounded-lg'>
+    <div className="min-h-screen p-4 flex flex-col gap-4">
+      <div className="mb-4">Scroll down to see the sticky effect</div>
+      <div ref={containerRef} className="bg-gray-100 rounded-lg">
         <div
           ref={titleRef}
           className={`bg-white p-4 ${
             isSticky ? 'shadow-md' : ''
           } transition-shadow duration-300 ease-in-out`}
         >
-          <h2 className='text-2xl font-bold'>Sticky Title</h2>
+          <h2 className="text-2xl font-bold">Sticky Title</h2>
         </div>
-        <div className='h-[500px] w-full bg-black rounded-lg'></div>
+        <div className="h-[500px] w-full bg-black rounded-lg"></div>
       </div>
-      <div className='h-[500px] w-full bg-green-500 rounded-lg'></div>
-      <div className='h-[500px] w-full bg-orange-500 rounded-lg'></div>
+      <div className="h-[500px] w-full bg-green-500 rounded-lg"></div>
+      <div className="h-[500px] w-full bg-orange-500 rounded-lg"></div>
     </div>
   )
 }

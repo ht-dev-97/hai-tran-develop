@@ -1,5 +1,6 @@
-import React from "react"
-import { Post } from "../../_types"
+import React from 'react'
+
+import { Post } from '../../_types'
 
 interface PostContainerProps {
   post: Post

@@ -1,19 +1,20 @@
-"use client"
+'use client'
 
-import React from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { TOPICS } from "@/constants"
-import TopicBlock from "../_components/topic-block"
-import { useTranslations } from "next-intl"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { TOPICS } from '@/constants'
+import { useTranslations } from 'next-intl'
+import React from 'react'
+
+import TopicBlock from '../_components/topic-block'
 
 const TopicsContainer = () => {
-  const t = useTranslations("TopicsPage")
+  const t = useTranslations('TopicsPage')
 
   return (
     <div className="min-h-screen p-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-extrabold mb-8 text-center">
-          {t("title")}
+          {t('title')}
         </h1>
         <Tabs defaultValue="UI NextJS" className="rounded-xl shadow-2xl p-6">
           <TabsList className="mb-6 p-1 rounded-lg">

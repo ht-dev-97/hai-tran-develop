@@ -1,13 +1,13 @@
-"use client"
+'use client'
 
-import React, { useState } from "react"
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { cn } from "@/lib/utils"
+  TooltipTrigger
+} from '@/components/ui/tooltip'
+import { cn } from '@/lib/utils'
+import React, { useState } from 'react'
 
 const TooltipDemo = () => {
   const [open, setOpen] = useState(false)
@@ -18,7 +18,7 @@ const TooltipDemo = () => {
         <TooltipTrigger asChild>
           <button
             type="button"
-            className={cn("cursor-pointer")}
+            className={cn('cursor-pointer')}
             onClick={() => setOpen(!open)}
             onMouseEnter={() => setOpen(true)}
             onMouseLeave={() => setOpen(false)}
@@ -26,7 +26,7 @@ const TooltipDemo = () => {
             onKeyDown={(e) => {
               e.preventDefault()
               // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-              e.key === "Enter" && setOpen(!open)
+              e.key === 'Enter' && setOpen(!open)
             }}
           >
             Hover

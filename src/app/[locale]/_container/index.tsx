@@ -1,21 +1,21 @@
-"use client"
+'use client'
 
-import { useTranslations } from "next-intl"
+import { Button } from '@/components/ui/button'
+import { Link } from '@/i18n/routing'
+import { ChevronRight } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
-import { Button } from "@/components/ui/button"
-import { ChevronRight } from "lucide-react"
-import TopicCard from "../_components/topic-card"
-import { TOPICCARD } from "../_constants"
-import { Link } from "@/i18n/routing"
+import TopicCard from '../_components/topic-card'
+import { TOPICCARD } from '../_constants'
 
 const HomeContainer = () => {
-  const t = useTranslations("HomePage")
+  const t = useTranslations('HomePage')
 
   return (
     <div className="min-h-screen">
       <main className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <section className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold mb-4">{t("title")}</h2>
+          <h2 className="text-4xl font-extrabold mb-4">{t('title')}</h2>
         </section>
 
         <section className="grid grid-cols-1 gap-8 mb-16">

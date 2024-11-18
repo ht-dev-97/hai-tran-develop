@@ -1,39 +1,38 @@
-"use client"
-
-import React, { useState } from "react"
-import { ChevronsUpDown } from "lucide-react"
+'use client'
 
 // import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { Button } from '@/components/ui/button'
 import {
   Command,
   CommandGroup,
   CommandItem,
-  CommandList,
-} from "@/components/ui/command"
+  CommandList
+} from '@/components/ui/command'
 import {
   Popover,
   PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
-import { cn } from "@/lib/utils"
+  PopoverTrigger
+} from '@/components/ui/popover'
+import { cn } from '@/lib/utils'
+import { ChevronsUpDown } from 'lucide-react'
+import React, { useState } from 'react'
 
 const list = [
   {
-    id: "1",
-    earning: "500,121.250",
-    unit: "USDT",
+    id: '1',
+    earning: '500,121.250',
+    unit: 'USDT'
   },
   {
-    id: "2",
-    earning: "500,121.250",
-    unit: "Points",
-  },
+    id: '2',
+    earning: '500,121.250',
+    unit: 'Points'
+  }
 ]
 
 export function ComboboxDemo() {
   const [open, setOpen] = useState(false)
-  const [value, setValue] = useState("1")
+  const [value, setValue] = useState('1')
 
   const currentItem = list.find((item) => item.id === value)
 
@@ -69,8 +68,8 @@ export function ComboboxDemo() {
                     setOpen(false)
                   }}
                   className={cn(
-                    value === item.id && "bg-green-500",
-                    "cursor-pointer"
+                    value === item.id && 'bg-green-500',
+                    'cursor-pointer'
                   )}
                 >
                   <div className="flex flex-col items-start gap-2">

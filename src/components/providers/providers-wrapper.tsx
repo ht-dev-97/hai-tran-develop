@@ -1,6 +1,6 @@
-import { ReactNode } from "react"
-import { UserProvider } from "@auth0/nextjs-auth0/client"
-import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl"
+import { UserProvider } from '@auth0/nextjs-auth0/client'
+import { AbstractIntlMessages, NextIntlClientProvider } from 'next-intl'
+import { ReactNode } from 'react'
 
 interface ProvidersWrapperProps {
   children: ReactNode
@@ -11,7 +11,7 @@ interface ProvidersWrapperProps {
 export function ProvidersWrapper({
   children,
   locale,
-  messages,
+  messages
 }: ProvidersWrapperProps) {
   return (
     <UserProvider>

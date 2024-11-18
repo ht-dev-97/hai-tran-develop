@@ -1,5 +1,5 @@
-import fs from "fs"
-import matter from "gray-matter"
+import fs from 'fs'
+import matter from 'gray-matter'
 
 interface Blog {
   title: string
@@ -14,10 +14,10 @@ interface Blog {
 export default function getBlogs(basePath: string): Blog[] {
   const folder = `${basePath}/` // blogs/
   const files = fs.readdirSync(folder)
-  const markdownFiles = files.filter((file) => file.endsWith(".mdx"))
+  const markdownFiles = files.filter((file) => file.endsWith('.mdx'))
 
   const loadedMarkdownFiles = markdownFiles.map((file) => {
-    const fileContents = fs.readFileSync(`${basePath}/${file}`, "utf8")
+    const fileContents = fs.readFileSync(`${basePath}/${file}`, 'utf8')
     const matterResult = matter(fileContents)
 
     return {
@@ -26,8 +26,8 @@ export default function getBlogs(basePath: string): Blog[] {
       author: matterResult.data.author,
       created_at: matterResult.data.created_at,
       description: matterResult.data.description,
-      slug: matterResult.data.title.replace(" ", "-").toLowerCase(),
-      modified_title: matterResult.data.title.toLowerCase(),
+      slug: matterResult.data.title.replace(' ', '-').toLowerCase(),
+      modified_title: matterResult.data.title.toLowerCase()
     } as Blog
   })
 

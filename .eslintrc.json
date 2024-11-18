@@ -1,3 +1,66 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "next",
+    "next/core-web-vitals", 
+    "next/typescript",
+    "eslint:recommended",
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["prettier", "@typescript-eslint", "react", "react-hooks"],
+  "root": true,
+  "rules": {
+    // TypeScript rules
+    "@typescript-eslint/array-type": [
+      "warn",
+      {
+        "default": "array"
+      }
+    ],
+    "@typescript-eslint/consistent-type-assertions": [
+      "off",
+      {
+        "assertionStyle": "as",
+        "objectLiteralTypeAssertions": "never"
+      }
+    ],
+    // JavaScript rules
+    "prefer-const": "warn",
+    "no-var": "warn",
+    // "no-unused-vars": "warn",
+    "object-shorthand": "warn",
+    "quote-props": ["warn", "as-needed"],
+    // React rules
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": ["ts", "tsx"]
+      }
+    ],
+    "react/jsx-fragments": ["warn", "syntax"], // Shorthand syntax for React fragments
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "prettier/prettier": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }
+

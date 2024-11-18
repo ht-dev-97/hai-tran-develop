@@ -1,17 +1,29 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-"use client"
+'use client'
 
-import React from "react"
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { useUser } from "@auth0/nextjs-auth0/client"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { User, LogOut } from "lucide-react"
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
+import { useUser } from '@auth0/nextjs-auth0/client'
+import { LogOut, User } from 'lucide-react'
+import React from 'react'
+
+/* eslint-disable @next/next/no-html-link-for-pages */
+
+/* eslint-disable @next/next/no-html-link-for-pages */
+
+/* eslint-disable @next/next/no-html-link-for-pages */
+
+/* eslint-disable @next/next/no-html-link-for-pages */
+
+/* eslint-disable @next/next/no-html-link-for-pages */
+
+/* eslint-disable @next/next/no-html-link-for-pages */
 
 const UserAction = () => {
   const { user, isLoading } = useUser()
@@ -28,9 +40,9 @@ const UserAction = () => {
               className="relative h-8 w-8 rounded-full border border-primary"
             >
               <Avatar className="h-8 w-8">
-                <AvatarImage src={user.picture || ""} alt={user.name || ""} />
+                <AvatarImage src={user.picture || ''} alt={user.name || ''} />
                 <AvatarFallback>
-                  {user.name ? user.name[0].toUpperCase() : "U"}
+                  {user.name ? user.name[0].toUpperCase() : 'U'}
                 </AvatarFallback>
               </Avatar>
             </Button>

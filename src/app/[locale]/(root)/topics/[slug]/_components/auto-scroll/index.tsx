@@ -1,7 +1,8 @@
-import React from "react"
-import AutoScrollDemo from "./auto-scroll-demo"
-import AutoScrollText from "./auto-scroll-text"
-import AutoScrollImage from "./auto-scroll-image"
+import React from 'react'
+
+import AutoScrollDemo from './auto-scroll-demo'
+import AutoScrollImage from './auto-scroll-image'
+import AutoScrollText from './auto-scroll-text'
 
 const AutoScroll = () => {
   return (

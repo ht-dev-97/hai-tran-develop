@@ -1,35 +1,36 @@
-import "../../styles/globals.css"
-import { getMessages, getTranslations } from "next-intl/server"
-import { notFound } from "next/navigation"
-import { routing } from "@/i18n/routing"
-import { Abolition, SNPro } from "@/configs/fonts/custom-fonts"
-import Header from "@/components/layout/header"
-import Footer from "@/components/layout/footer"
-import { Toaster } from "@/components/ui/sonner"
-import { locales } from "@/i18n/request"
-import { ProvidersWrapper } from "@/components/providers/providers-wrapper"
-import { ThemeProvider } from "@/components/providers/theme-provider"
+import Footer from '@/components/layout/footer'
+import Header from '@/components/layout/header'
+import { ProvidersWrapper } from '@/components/providers/providers-wrapper'
+import { ThemeProvider } from '@/components/providers/theme-provider'
+import { Toaster } from '@/components/ui/sonner'
+import { Abolition, SNPro } from '@/configs/fonts/custom-fonts'
+import { locales } from '@/i18n/request'
+import { routing } from '@/i18n/routing'
+import { getMessages, getTranslations } from 'next-intl/server'
+import { notFound } from 'next/navigation'
+
+import '../../styles/globals.css'
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
 export async function generateMetadata({
-  params: { locale },
+  params: { locale }
 }: {
   params: { locale: string }
 }) {
-  const t = await getTranslations({ locale, namespace: "Layout" })
+  const t = await getTranslations({ locale, namespace: 'Layout' })
 
   return {
-    title: t("Metadata.title"),
-    description: t("Metadata.description"),
+    title: t('Metadata.title'),
+    description: t('Metadata.description')
   }
 }
 
 export default async function RootLayout({
   children,
-  params: { locale },
+  params: { locale }
 }: Readonly<{
   children: React.ReactNode
   params: { locale: string }
