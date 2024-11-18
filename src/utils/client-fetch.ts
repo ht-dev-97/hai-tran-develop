@@ -21,12 +21,14 @@ class HttpClient {
   }
 
   private mergeOptions(options?: FetchOptions): FetchOptions {
+    const accessToken = localStorage.getItem('access_token')
     return {
       ...this.defaultOptions,
       ...options,
       headers: {
         ...this.defaultOptions.headers,
-        ...(options?.headers ?? {})
+        ...(options?.headers ?? {}),
+        ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {})
       }
     }
   }

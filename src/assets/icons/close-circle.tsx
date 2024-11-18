@@ -1,4 +1,4 @@
-import { SVGProps } from '@/types/global'
+import { SVGProps } from '@/types'
 import React from 'react'
 
 export const CloseCircle = (props: SVGProps) => {
