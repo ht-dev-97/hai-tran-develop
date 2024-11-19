@@ -1,6 +1,9 @@
 import { Location, RouteData } from '@/types'
 
-const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || ''
+const MAPBOX_TOKEN =
+  process.env.MAPBOX_ACCESS_TOKEN ||
+  process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN ||
+  ''
 
 export async function searchPlaces(query: string): Promise<Location[]> {
   if (!query.trim()) return []

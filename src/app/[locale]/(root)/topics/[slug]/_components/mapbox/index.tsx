@@ -9,7 +9,10 @@ import Map, { Layer, LayerProps, Marker, Source } from 'react-map-gl'
 import { LocationMarker } from './location-marker'
 import { LocationSearch } from './location-search'
 
-const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || ''
+const MAPBOX_TOKEN =
+  process.env.MAPBOX_ACCESS_TOKEN ||
+  process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN ||
+  ''
 
 const routeLayer: LayerProps = {
   id: 'route',
