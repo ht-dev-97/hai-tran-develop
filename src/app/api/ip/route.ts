@@ -1,15 +1,10 @@
-// get IP
-import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 
-export async function GET() {
-  const headersList = headers()
+export async function GET(request: Request) {
   const ip =
-    headersList.get('x-forwarded-for')?.split(',')[0] ||
-    headersList.get('x-real-ip') ||
-    headersList.get('cf-connecting-ip') ||
-    headersList.get('x-client-ip') ||
-    'Unknown IP'
+    request.headers.get('x-forwarded-for')?.split(',')[0] ||
+    request.headers.get('x-real-ip') ||
+    'Unknown'
 
   return NextResponse.json({ ip })
 }
