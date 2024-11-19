@@ -12,9 +12,8 @@ const HostIP = () => {
     const fetchIP = async () => {
       try {
         const response = await clientFetch.get('/api/ip')
-        if (response) {
-          const data = await response.json()
-          setIp(data.ip)
+        if (response && response.data) {
+          setIp(response.data.ip)
           setLoading(false)
         }
       } catch (err) {

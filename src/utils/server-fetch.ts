@@ -1,130 +1,170 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type FetchOptions = {
-  cache?: RequestCache
-  tags?: string[]
-  revalidate?: number | false
-  headers?: HeadersInit
-  method?: string
-  body?: any
-  access_token?: string
-}
+import {
+  HttpError,
+  HttpMethod,
+  HttpResponse,
+  RequestConfig,
+  RetryConfig
+} from '../types/fetch'
+import {
+  createQueryString,
+  getBaseUrl,
+  parseResponse,
+  retryRequest,
+  timeout
+} from '../utils/fetch-utils'
 
-type ServerFetchConfig = {
-  baseUrl?: string
-  defaultHeaders?: HeadersInit
-}
-
-export class ServerFetchError extends Error {
-  constructor(
-    public status: number,
-    public data: any,
-    message?: string
-  ) {
-    super(message || `Server fetch failed with status ${status}`)
-    this.name = 'ServerFetchError'
-  }
-}
-
-export class ServerFetch {
+class ServerHttpClient {
   private baseUrl: string
-  private defaultHeaders: HeadersInit
+  private defaultConfig: RequestConfig = {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    cache: 'no-store'
+  }
 
-  constructor(config: ServerFetchConfig = {}) {
-    this.baseUrl = config.baseUrl || process.env.API_BASE_URL || ''
-    this.defaultHeaders = {
-      'Content-Type': 'application/json',
-      ...config.defaultHeaders
+  private defaultRetryConfig: RetryConfig = {
+    retries: 3,
+    retryDelay: 1000,
+    retryCondition: (error: any) => {
+      if (error instanceof HttpError) {
+        return error.status >= 500 || error.status === 429
+      }
+      return true
     }
   }
 
-  async fetch<T>(path: string, options: FetchOptions = {}): Promise<T> {
-    const {
-      cache = 'no-store',
-      tags,
-      revalidate,
-      headers,
-      method = 'GET',
-      body,
-      access_token
-    } = options
+  constructor(baseUrl?: string) {
+    this.baseUrl = baseUrl || getBaseUrl(true)
+  }
 
-    const url = this.buildUrl(path)
+  private mergeConfig(config?: RequestConfig): RequestConfig {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { accessToken, params, ...restConfig } = config || {}
 
-    const fetchOptions: RequestInit = {
-      method,
+    return {
+      ...this.defaultConfig,
+      ...restConfig,
       headers: {
-        ...this.defaultHeaders,
-        ...headers,
-        ...(access_token ? { Authorization: `Bearer ${access_token}` } : {})
-      },
-      cache,
-      next: {
-        tags,
-        revalidate
+        ...this.defaultConfig.headers,
+        ...(restConfig?.headers || {}),
+        ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {})
       }
     }
+  }
 
-    if (body) {
-      fetchOptions.body = JSON.stringify(body)
+  private getFullUrl(url: string, params?: Record<string, string>): string {
+    const queryString = createQueryString(params)
+
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return queryString ? `${url}?${queryString}` : url
     }
 
-    const response = await fetch(url, fetchOptions)
-    const data = await response.json()
+    const hasLeadingSlash = url.startsWith('/')
+    const hasTrailingSlash = this.baseUrl.endsWith('/')
 
-    // Handle response errors
+    const fullUrl = `${this.baseUrl}${hasLeadingSlash || hasTrailingSlash ? '' : '/'}${url}`
+
+    return queryString ? `${fullUrl}?${queryString}` : fullUrl
+  }
+
+  private async handleResponse<T>(
+    response: Response,
+    config: RequestConfig
+  ): Promise<HttpResponse<T>> {
+    const data = (await parseResponse(response)) as T
+
     if (!response.ok) {
-      throw new ServerFetchError(response.status, data)
+      throw new HttpError(response.status, response.statusText, data)
     }
 
-    return data as T
-  }
-
-  private buildUrl(path: string): string {
-    if (path.startsWith('http')) {
-      return path
+    return {
+      data,
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers,
+      config
     }
-    return `${this.baseUrl}${path.startsWith('/') ? path : `/${path}`}`
   }
 
-  // Convenience methods for common HTTP methods
-  async get<T>(
-    path: string,
-    options: Omit<FetchOptions, 'method' | 'body'> = {}
-  ) {
-    return this.fetch<T>(path, { ...options, method: 'GET' })
+  private async request<T = any>(
+    method: HttpMethod,
+    url: string,
+    config?: RequestConfig & { body?: any }
+  ): Promise<HttpResponse<T>> {
+    const mergedConfig = this.mergeConfig(config)
+    const { timeout: timeoutMs, params, ...fetchConfig } = mergedConfig
+
+    const controller = new AbortController()
+    const { signal } = controller
+
+    try {
+      const request = async (): Promise<HttpResponse<T>> => {
+        const response = (await Promise.race([
+          fetch(this.getFullUrl(url, params), {
+            ...fetchConfig,
+            method,
+            signal,
+            body: fetchConfig.body
+              ? JSON.stringify(fetchConfig.body)
+              : undefined
+          }),
+          timeoutMs ? timeout(timeoutMs) : new Promise(() => {})
+        ])) as Response
+
+        return this.handleResponse<T>(response, mergedConfig)
+      }
+
+      return await retryRequest(request, this.defaultRetryConfig)
+    } catch (error) {
+      if (error instanceof HttpError) throw error
+
+      throw new HttpError(
+        0,
+        error instanceof Error ? error.message : 'Unknown error occurred'
+      )
+    } finally {
+      controller.abort()
+    }
   }
 
-  async post<T>(
-    path: string,
-    body: T,
-    options: Omit<FetchOptions, 'method'> = {}
-  ) {
-    return this.fetch<T>(path, { ...options, method: 'POST', body })
+  public async get<T = any>(
+    url: string,
+    config?: RequestConfig
+  ): Promise<HttpResponse<T>> {
+    return this.request<T>('GET', url, config)
   }
 
-  async put<T>(
-    path: string,
-    body: T,
-    options: Omit<FetchOptions, 'method'> = {}
-  ) {
-    return this.fetch<T>(path, { ...options, method: 'PUT', body })
+  public async post<T = any, D = any>(
+    url: string,
+    data?: D,
+    config?: RequestConfig
+  ): Promise<HttpResponse<T>> {
+    return this.request<T>('POST', url, { ...config, body: data })
   }
 
-  async patch<T>(
-    path: string,
-    body: T,
-    options: Omit<FetchOptions, 'method'> = {}
-  ) {
-    return this.fetch<T>(path, { ...options, method: 'PATCH', body })
+  public async put<T = any, D = any>(
+    url: string,
+    data?: D,
+    config?: RequestConfig
+  ): Promise<HttpResponse<T>> {
+    return this.request<T>('PUT', url, { ...config, body: data })
   }
 
-  async delete<T>(
-    path: string,
-    options: Omit<FetchOptions, 'method' | 'body'> = {}
-  ) {
-    return this.fetch<T>(path, { ...options, method: 'DELETE' })
+  public async patch<T = any, D = any>(
+    url: string,
+    data?: D,
+    config?: RequestConfig
+  ): Promise<HttpResponse<T>> {
+    return this.request<T>('PATCH', url, { ...config, body: data })
+  }
+
+  public async delete<T = any>(
+    url: string,
+    config?: RequestConfig
+  ): Promise<HttpResponse<T>> {
+    return this.request<T>('DELETE', url, config)
   }
 }
 
-// Create a default instance
-export const serverFetch = new ServerFetch()
+export const serverFetch = new ServerHttpClient()

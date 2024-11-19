@@ -10,8 +10,8 @@ const Environment = () => {
     const fetchEnvironment = async () => {
       try {
         const response = await clientFetch.get('/api/environment')
-        if (response) {
-          const data = await response.json()
+        if (response && response.data) {
+          const data = response.data
           setEnvironment(data.environment)
         }
       } catch (error) {

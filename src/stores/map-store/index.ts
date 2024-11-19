@@ -1,5 +1,5 @@
-import { Location, RouteData, ViewState } from '@/types'
-import { getRouteDirections } from '@/utils/services/mapbox'
+import { getRouteDirections } from '@/services/mapbox'
+import { Location, RouteData, ViewState } from '@/types/map'
 import { create } from 'zustand'
 
 interface MapState {

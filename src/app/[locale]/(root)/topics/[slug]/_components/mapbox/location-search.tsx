@@ -15,8 +15,8 @@ import {
   PopoverTrigger
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
-import { Location } from '@/types'
-import { searchPlaces } from '@/utils/services/mapbox'
+import { searchPlaces } from '@/services/mapbox'
+import { Location } from '@/types/map'
 import { Check, MapPin, Navigation } from 'lucide-react'
 import { useState } from 'react'
 
