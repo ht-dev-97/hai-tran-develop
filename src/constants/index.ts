@@ -22,7 +22,7 @@ export const LIST_MENU = [
   { href: '/topics', name: 'topics', label: 'Topics' },
   { href: '/posts', name: 'posts', label: 'Posts' },
   { href: '/blogs', name: 'blogs', label: 'Blogs' }
-]
+] as const
 
 export const TOPICS = {
   'UI NextJS': [

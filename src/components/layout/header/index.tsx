@@ -3,6 +3,7 @@
 import { LIST_MENU } from '@/constants'
 import { Link, usePathname } from '@/i18n/routing'
 import { cn } from '@/lib/utils'
+import { MenuItemName } from '@/types'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 
@@ -40,7 +41,7 @@ export default function Header() {
                       isActive && 'text-colorBrand-primary'
                     )}
                   >
-                    {t(`menu.${item.name}`)}
+                    {t(`menu.${item.name as MenuItemName}`)}
                     {isActive && (
                       <motion.div
                         className="absolute top-[100%] left-0 right-0 h-1 bg-colorBrand-primary rounded-full"
