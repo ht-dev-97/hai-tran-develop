@@ -43,6 +43,8 @@ export default function MapComponent() {
     getCurrentLocation()
   }, [getCurrentLocation])
 
+  console.log('MAPBOX_TOKEN', MAPBOX_TOKEN)
+
   return (
     <div className="flex gap-4 min-h-[400px]">
       <Card className="w-1/3 space-y-4 p-4 rounded-lg shadow">
