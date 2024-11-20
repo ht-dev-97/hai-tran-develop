@@ -1,3 +1,4 @@
+// Get IP
 import { NextResponse } from 'next/server'
 
 export async function GET(request: Request) {
