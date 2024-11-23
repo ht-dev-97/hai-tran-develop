@@ -107,4 +107,47 @@
   .paused {
     animation-play-state: paused;
   }
+
+  .animate-cursor {
+    animation: cursor 0.5s infinite alternate;
+  }
+
+  .animate-cursor-outer {
+    animation: cursor-outer 0.5s infinite alternate;
+  }
+
+  .animate-expand {
+    animation: expand 0.5s forwards;
+  }
+}
+
+@keyframes cursor {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+}
+
+@keyframes cursor-outer {
+  from {
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+}
+
+@keyframes expand {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.75);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
 }

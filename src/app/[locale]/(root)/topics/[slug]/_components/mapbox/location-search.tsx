@@ -15,10 +15,10 @@ import {
   PopoverTrigger
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
-import { searchPlaces } from '@/services/mapbox'
-import { Location } from '@/types/map'
+import { useMapStore } from '@/stores'
+import type { Location } from '@/types/map'
 import { Check, MapPin, Navigation } from 'lucide-react'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 interface LocationSearchProps {
   label: string
@@ -40,29 +40,24 @@ export function LocationSearch({
   placeholder
 }: LocationSearchProps) {
   const [open, setOpen] = useState(false)
-  const [inputValue, setInputValue] = useState(value)
-  const [searchResults, setSearchResults] = useState<Location[]>([])
-  const [isSearching, setIsSearching] = useState(false)
+  const {
+    searchLocations,
+    searchResults,
+    isLoading: isSearching
+  } = useMapStore()
 
-  const handleSearch = async (search: string) => {
-    if (isReadOnly) return
+  const handleSearch = useCallback(
+    async (search: string) => {
+      if (isReadOnly) return
 
-    setInputValue(search)
-    onChange?.(search)
+      onChange?.(search)
 
-    if (!search.trim()) {
-      setSearchResults([])
-      return
-    }
+      if (!search.trim()) return
 
-    setIsSearching(true)
-    try {
-      const results = await searchPlaces(search)
-      setSearchResults(results)
-    } finally {
-      setIsSearching(false)
-    }
-  }
+      await searchLocations(search)
+    },
+    [isReadOnly, onChange, searchLocations]
+  )
 
   return (
     <div className="flex flex-col gap-2">
@@ -99,12 +94,12 @@ export function LocationSearch({
           <PopoverContent className="w-[300px] p-0">
             <Command shouldFilter={false}>
               <CommandInput
-                value={inputValue}
+                value={value}
                 onValueChange={handleSearch}
                 placeholder="Search location..."
               />
               {isSearching && <div className="text-center">Loading...</div>}
-              <CommandList>
+              <CommandList className="bg-colorBrand-bg-box">
                 <CommandEmpty>No results found.</CommandEmpty>
                 <CommandGroup>
                   {searchResults.map((location) => (
@@ -120,9 +115,7 @@ export function LocationSearch({
                       <Check
                         className={cn(
                           'mr-2 h-4 w-4',
-                          inputValue === location.name
-                            ? 'opacity-100'
-                            : 'opacity-0'
+                          value === location.name ? 'opacity-100' : 'opacity-0'
                         )}
                       />
                       {location.name}

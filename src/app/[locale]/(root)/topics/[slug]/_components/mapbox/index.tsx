@@ -1,36 +1,25 @@
 'use client'
 
+import { showToast } from '@/components/layout/toast.tsx'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { MAPBOX_CONFIG } from '@/configs/mapbox/mapbox.config'
+import { MAP_CONSTANTS } from '@/constants'
 import { useMapStore } from '@/stores'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { useEffect } from 'react'
-import Map, { Layer, LayerProps, Marker, Source } from 'react-map-gl'
+import Map, { Layer, Marker, Source } from 'react-map-gl'
 
 import { LocationMarker } from './location-marker'
 import { LocationSearch } from './location-search'
 
-const MAPBOX_TOKEN =
-  process.env.MAPBOX_ACCESS_TOKEN ||
-  process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN ||
-  ''
-
-const routeLayer: LayerProps = {
-  id: 'route',
-  type: 'line',
-  paint: {
-    'line-color': '#F09319',
-    'line-width': 5,
-    'line-opacity': 0.75
-  }
-}
-
-export default function MapComponent() {
+const MapComponent = () => {
   const {
     viewState,
     currentLocation,
     destinationLocation,
     routeData,
     searchQuery,
+    error,
     setViewState,
     setSearchQuery,
     setDestinationLocation,
@@ -43,7 +32,17 @@ export default function MapComponent() {
     getCurrentLocation()
   }, [getCurrentLocation])
 
-  console.log('MAPBOX_TOKEN', MAPBOX_TOKEN)
+  useEffect(() => {
+    if (error) {
+      showToast.success('Success message', {
+        description: error.message,
+        action: {
+          label: 'Undo',
+          onClick: () => console.log('Undo clicked')
+        }
+      })
+    }
+  }, [error])
 
   return (
     <div className="flex gap-4 min-h-[400px]">
@@ -77,11 +76,10 @@ export default function MapComponent() {
       <div className="w-2/3 bg-white rounded-lg shadow">
         <Map
           {...viewState}
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          onMove={(evt: any) => setViewState(evt.viewState)}
+          onMove={(evt) => setViewState(evt.viewState)}
           style={{ width: '100%', height: '100%' }}
           mapStyle="mapbox://styles/mapbox/streets-v12"
-          mapboxAccessToken={MAPBOX_TOKEN}
+          mapboxAccessToken={MAPBOX_CONFIG.ACCESS_TOKEN}
         >
           {currentLocation && (
             <Marker
@@ -89,7 +87,11 @@ export default function MapComponent() {
               latitude={currentLocation.latitude}
               anchor="bottom"
             >
-              <LocationMarker type="current" />
+              <LocationMarker
+                type="current"
+                size="md"
+                className="cursor-pointer"
+              />
             </Marker>
           )}
 
@@ -105,7 +107,7 @@ export default function MapComponent() {
 
           {routeData && (
             <Source type="geojson" data={routeData}>
-              <Layer {...routeLayer} />
+              <Layer {...MAP_CONSTANTS.ROUTE_LAYER} />
             </Source>
           )}
         </Map>
@@ -113,3 +115,5 @@ export default function MapComponent() {
     </div>
   )
 }
+
+export default MapComponent

@@ -12,7 +12,7 @@ import {
   parseResponse,
   retryRequest,
   timeout
-} from '../utils/fetch-utils'
+} from './fetch'
 
 class ServerHttpClient {
   private baseUrl: string

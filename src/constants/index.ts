@@ -31,8 +31,29 @@ export const TOPICS = {
     'Sticky Title',
     'Carousel',
     'Form Demo',
-    'MapBox'
+    'MapBox',
+    'Toast'
   ],
   'Route Handlers': ['Environment', 'Host IP'],
   'Global State': ['Zustand']
 }
+
+export const MAP_CONSTANTS = {
+  DEFAULT_VIEW_STATE: {
+    longitude: -73.935242,
+    latitude: 40.73061,
+    zoom: 12
+  },
+  DEFAULT_ZOOM: {
+    LOCATION: 14
+  },
+  ROUTE_LAYER: {
+    id: 'route',
+    type: 'line',
+    paint: {
+      'line-color': '#F09319',
+      'line-width': 5,
+      'line-opacity': 0.75
+    }
+  } as const
+} as const
