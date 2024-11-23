@@ -1,5 +1,10 @@
 'use client'
 
+import { useState } from 'react'
+
+import BlogCard from './blog-card'
+import BlogsSearch from './blog-search'
+
 interface Blog {
   title: string
   cook_time: string
@@ -15,11 +20,24 @@ interface BlogListProps {
 }
 
 const BlogList = ({ blogs }: BlogListProps) => {
-  console.log(blogs)
+  const [searchVal, setSearchVal] = useState<string>('')
+
+  const filteredBlogs = blogs.filter((blog) =>
+    blog.modified_title.includes(searchVal)
+  )
 
   return (
     <section>
-      <h2>okok</h2>
+      <BlogsSearch searchVal={searchVal} setSearchVal={setSearchVal} />
+      <h2 className="text-2xl font-bold">Popular Blogs</h2>
+      <div className="space-y-4 mb-10 mt-5">
+        {filteredBlogs.length === 0 && (
+          <p className="text-sm font-medium">No blogs found.</p>
+        )}
+        {filteredBlogs.map((blog, index) => (
+          <BlogCard blog={blog} key={index} />
+        ))}
+      </div>
     </section>
   )
 }

@@ -1,3 +1,5 @@
+'use client'
+
 import getBlogs from '@/lib/markdown/get-blogs'
 import React from 'react'
 
