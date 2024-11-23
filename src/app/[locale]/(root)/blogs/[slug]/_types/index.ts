@@ -1,13 +1,8 @@
-export interface BlogData {
-  cook_time: string
-  author: string
-  created_at: string
-  description: string
-}
+import { Blog } from '@/types/blogs'
 
 export interface BlogContent {
   content: string
-  data: BlogData
+  data: Blog
 }
 
 export interface Params {

@@ -1,8 +1,8 @@
 'use client'
 
+import { Blog } from '@/types/blogs'
 import { useState } from 'react'
 
-import { Blog } from '../_types'
 import BlogCard from './blog-card'
 import BlogsSearch from './blog-search'
 

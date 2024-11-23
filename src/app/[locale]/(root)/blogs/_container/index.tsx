@@ -1,11 +1,11 @@
 'use client'
 
 import { showToast } from '@/components/layout/toast.tsx'
+import { Blog } from '@/types/blogs'
 import { clientFetch } from '@/utils/client-fetch'
 import { useEffect, useState } from 'react'
 
 import BlogList from '../_components/blog-list'
-import { Blog } from '../_types'
 
 const BlogsContainer = () => {
   const [blogs, setBlogs] = useState<Blog[]>([])

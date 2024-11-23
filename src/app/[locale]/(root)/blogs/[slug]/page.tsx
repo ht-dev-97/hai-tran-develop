@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/badge'
 import { Card, CardHeader } from '@/components/ui/card'
 import { Link } from '@/i18n/routing'
+import { Blog } from '@/types/blogs'
 import fs from 'fs'
 import matter from 'gray-matter'
 import { CalendarDays, Clock } from 'lucide-react'
@@ -8,7 +9,7 @@ import Markdown from 'markdown-to-jsx'
 import { notFound } from 'next/navigation'
 import path from 'path'
 
-import { BlogContent, BlogData, Params } from './_types'
+import { BlogContent, Params } from './_types'
 
 const BLOG_CACHE: Record<string, BlogContent> = {}
 
@@ -30,7 +31,7 @@ const fetchBlogs = (slug: string): BlogContent => {
 
     const blogContent = {
       content: result.content,
-      data: result.data as BlogData
+      data: result.data as Blog
     }
 
     BLOG_CACHE[slug] = blogContent

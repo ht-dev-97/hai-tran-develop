@@ -1,15 +1,6 @@
+import { Blog } from '@/types/blogs'
 import fs from 'fs'
 import matter from 'gray-matter'
-
-interface Blog {
-  title: string
-  cook_time: string
-  author: string
-  created_at: string
-  description: string
-  slug: string
-  modified_title: string
-}
 
 export default function getBlogs(basePath: string): Blog[] {
   const folder = `data/${basePath}/` // blogs/
