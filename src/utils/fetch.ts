@@ -1,4 +1,4 @@
-import { HttpError } from '../types/fetch'
+import { HttpError } from '@/types/fetch'
 
 export function createQueryString(params?: Record<string, string>): string {
   if (!params) return ''

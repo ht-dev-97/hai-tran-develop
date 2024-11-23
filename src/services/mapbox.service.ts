@@ -1,17 +1,16 @@
 import { MAPBOX_CONFIG } from '@/configs/mapbox/mapbox.config'
-
 import type {
   Location,
   MapboxRouteResponse,
   MapboxSearchResponse,
   RouteData
-} from '../types/map'
-import { clientFetch } from '../utils/client-fetch'
+} from '@/types/map'
+import { clientFetch } from '@/utils/client-fetch'
 import {
   buildMapboxUrl,
   transformFeatureToLocation,
   validateMapboxToken
-} from '../utils/mapbox.utils'
+} from '@/utils/mapbox'
 
 export const searchPlaces = async (query: string): Promise<Location[]> => {
   if (!query.trim()) return []

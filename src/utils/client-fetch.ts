@@ -5,7 +5,8 @@ import {
   HttpResponse,
   RequestConfig,
   RetryConfig
-} from '../types/fetch'
+} from '@/types/fetch'
+
 import {
   createQueryString,
   getBaseUrl,
