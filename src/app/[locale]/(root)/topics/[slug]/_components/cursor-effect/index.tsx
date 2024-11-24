@@ -1,9 +1,9 @@
 'use client'
 
-import Link from 'next/link'
+import { LIST_MENU } from '@/constants'
+import { Link } from '@/i18n/routing'
 import React from 'react'
 
-import { LIST_HOVER } from '../../_constant'
 import { CustomCursor } from './custom-cursor'
 
 const CursorEffect = () => {
@@ -11,13 +11,13 @@ const CursorEffect = () => {
     <div className="flex items-center justify-center w-full">
       <div className="relative custom-menu-area">
         <ul className="flex list-none gap-8">
-          {LIST_HOVER.map((item) => (
-            <li key={item.id}>
+          {LIST_MENU.map((item) => (
+            <li key={item.name}>
               <Link
-                href={item.path}
+                href={item.href}
                 className="menu-item uppercase text-3xl font-bold hover:opacity-80 transition-all duration-300 block px-4 py-2"
               >
-                {item.name}
+                {item.label}
               </Link>
             </li>
           ))}
