@@ -32,7 +32,9 @@ export const TOPICS = {
     'Carousel',
     'Form Demo',
     'MapBox',
-    'Toast'
+    'Toast',
+    'Glowing Hover',
+    'Cursor Effect'
   ],
   'Route Handlers': ['Environment', 'Host IP'],
   'Global State': ['Zustand']
