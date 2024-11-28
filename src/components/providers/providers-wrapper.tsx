@@ -1,4 +1,4 @@
-import { UserProvider } from '@auth0/nextjs-auth0/client'
+import { ClerkProvider } from '@clerk/nextjs'
 import { AbstractIntlMessages, NextIntlClientProvider } from 'next-intl'
 import { ReactNode } from 'react'
 
@@ -14,10 +14,10 @@ export function ProvidersWrapper({
   messages
 }: ProvidersWrapperProps) {
   return (
-    <UserProvider>
+    <ClerkProvider>
       <NextIntlClientProvider locale={locale} messages={messages}>
         {children}
       </NextIntlClientProvider>
-    </UserProvider>
+    </ClerkProvider>
   )
 }

@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
 'use client'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -9,33 +8,30 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { useUser } from '@auth0/nextjs-auth0/client'
+import { SignInButton, SignOutButton, useUser } from '@clerk/nextjs'
 import { LogOut, User } from 'lucide-react'
 import React from 'react'
 
-/* eslint-disable @next/next/no-html-link-for-pages */
-
-/* eslint-disable @next/next/no-html-link-for-pages */
-
 const UserAction = () => {
-  const { user, isLoading } = useUser()
+  const { isLoaded, isSignedIn, user } = useUser()
 
-  if (isLoading) return
+  if (!isLoaded) return <User />
 
   return (
     <>
-      {user ? (
+      {isSignedIn ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
-              className="relative h-8 w-8 rounded-full border border-primary"
+              className="relative rounded-full border-2 border-primary p-px"
             >
               <Avatar className="h-8 w-8">
-                <AvatarImage src={user.picture || ''} alt={user.name || ''} />
-                <AvatarFallback>
-                  {user.name ? user.name[0].toUpperCase() : 'U'}
-                </AvatarFallback>
+                <AvatarImage
+                  src={user?.imageUrl || ''}
+                  alt={user?.fullName || 'U'}
+                />
+                <AvatarFallback>{user?.fullName || 'U'}</AvatarFallback>
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
@@ -45,24 +41,27 @@ const UserAction = () => {
             forceMount
           >
             <DropdownMenuItem className="flex-col items-start">
-              <div className="font-medium">{user.name}</div>
-              <div className="text-sm">{user.email}</div>
+              <div className="text-primary font-medium">
+                {user?.fullName || 'U'}
+              </div>
+              <div className="text-sm italic">
+                {user?.primaryEmailAddress?.emailAddress}
+              </div>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Button asChild className="cursor-pointer">
-                <a href="/api/auth/logout" aria-label="Logout">
-                  <LogOut />
-                </a>
-              </Button>
+              <SignOutButton>
+                <Button variant="outline" className="cursor-pointer">
+                  <LogOut size={40} className="text-red-500" />
+                  <span className="text-red-500">Sign Out</span>
+                </Button>
+              </SignOutButton>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Button asChild className="cursor-pointer">
-          <a href="/api/auth/login" aria-label="Login">
-            <User />
-          </a>
-        </Button>
+        <SignInButton>
+          <User className="cursor-pointer" />
+        </SignInButton>
       )}
     </>
   )
