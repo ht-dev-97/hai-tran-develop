@@ -29,9 +29,11 @@ const UserAction = () => {
               <Avatar className="h-8 w-8">
                 <AvatarImage
                   src={user?.imageUrl || ''}
-                  alt={user?.fullName || 'U'}
+                  alt={user?.username || user?.fullName || 'U'}
                 />
-                <AvatarFallback>{user?.fullName || 'U'}</AvatarFallback>
+                <AvatarFallback>
+                  {user?.username || user?.fullName || 'U'}
+                </AvatarFallback>
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
@@ -42,7 +44,7 @@ const UserAction = () => {
           >
             <DropdownMenuItem className="flex-col items-start">
               <div className="text-primary font-medium">
-                {user?.fullName || 'U'}
+                {user?.username || user?.fullName || 'U'}
               </div>
               <div className="text-sm italic">
                 {user?.primaryEmailAddress?.emailAddress}
