@@ -4,6 +4,10 @@ import createMiddleware from 'next-intl/middleware'
 import { routing } from './i18n/routing'
 
 export default clerkMiddleware((auth, req) => {
+  if (req.nextUrl.pathname.startsWith('/api')) {
+    return
+  }
+
   // Create middleware for next-intl
   const intlMiddleware = createMiddleware(routing)
 
