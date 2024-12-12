@@ -11,7 +11,8 @@
       "home": "Home",
       "topics": "Topics",
       "posts": "Posts",
-      "blogs": "Blogs"
+      "blogs": "Blogs",
+      "fetch-api": "Fetch API"
     }
   },
   "HomePage": {
@@ -25,6 +26,9 @@
   },
   "PostsPage": {
     "title": "Welcome to My Blog"
+  },
+  "FetchAPIPage": {
+    "back": "Back to Fetch API"
   },
   "Footer": {
     "copyright": "HT Developer. All rights reserved."

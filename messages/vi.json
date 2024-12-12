@@ -11,7 +11,8 @@
       "home": "Trang chủ",
       "topics": "Chủ đề",
       "posts": "Bài viết",
-      "blogs": "Tin Tức"
+      "blogs": "Tin Tức",
+      "fetch-api": "Gọi API"
     }
   },
   "HomePage": {
@@ -25,6 +26,9 @@
   },
   "PostsPage": {
     "title": "Chào mừng đến với Blog của tôi"
+  },
+  "FetchAPIPage": {
+    "back": "Trở lại Fetch API"
   },
   "Footer": {
     "copyright": "HT Developer. Tất cả các quyền được bảo lưu."

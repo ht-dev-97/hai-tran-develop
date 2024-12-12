@@ -21,7 +21,8 @@ export const LIST_MENU = [
   { href: '/', name: 'home', label: 'Home' },
   { href: '/topics', name: 'topics', label: 'Topics' },
   { href: '/posts', name: 'posts', label: 'Posts' },
-  { href: '/blogs', name: 'blogs', label: 'Blogs' }
+  { href: '/blogs', name: 'blogs', label: 'Blogs' },
+  { href: '/fetch-api', name: 'fetch-api', label: 'Fetch API' }
 ] as const
 
 export const TOPICS = {

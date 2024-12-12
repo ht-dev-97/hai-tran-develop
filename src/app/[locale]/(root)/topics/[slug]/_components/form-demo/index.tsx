@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
+import { showToast } from '@/components/layout/toast.tsx'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -16,8 +18,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { CircleX } from 'lucide-react'
 import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
 import { z } from 'zod'
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 const FormDemo = () => {
   const [files, setFiles] = useState<
@@ -39,7 +44,7 @@ const FormDemo = () => {
       const isVideo = file.type.startsWith('video/')
 
       if (!isImage && !isVideo) {
-        toast.error(`File ${file.name} is not an image or video.`)
+        showToast.error(`File ${file.name} is not an image or video.`)
         return false
       }
       return true
@@ -70,7 +75,7 @@ const FormDemo = () => {
         fileInputRef.current.value = ''
       }
     } else {
-      toast.error('Total file size exceeds 20MB.')
+      showToast.error('Total file size exceeds 20MB.')
     }
   }
 
@@ -109,11 +114,10 @@ const FormDemo = () => {
 
       console.log('dataSubmit', dataSubmit)
 
-      toast.success('Successfully submitted')
+      showToast.success('Successfully submitted')
       resetFormAndState()
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      toast.error('Failed to submit. Please try again')
+    } catch (error: any) {
+      showToast.error(error.message)
     }
   }
 
