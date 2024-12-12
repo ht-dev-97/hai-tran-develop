@@ -21,7 +21,11 @@ export async function timeout(ms: number): Promise<never> {
 
 export function parseResponse(response: Response): Promise<unknown> {
   const contentType = response.headers.get('content-type')
-  if (contentType?.includes('application/json')) {
+  console.log('contentType', contentType)
+
+  const jsonContentTypeRegex = /application\/(.*\+)?json/i
+
+  if (contentType && jsonContentTypeRegex.test(contentType)) {
     return response.json()
   }
   if (contentType?.includes('text/')) {

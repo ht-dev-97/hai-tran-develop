@@ -8,8 +8,7 @@ const FetchAPIContainer = async () => {
 
   if (!response?.data) return []
 
-  const data = JSON.parse(response.data)
-  const dogs = data?.data || []
+  const dogs = response.data?.data || []
 
   if (!dogs.length) return <div>No Dogs</div>
 

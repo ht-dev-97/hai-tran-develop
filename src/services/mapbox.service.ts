@@ -27,10 +27,7 @@ export const searchPlaces = async (query: string): Promise<Location[]> => {
 
     if (!response?.data) return []
 
-    const data: MapboxSearchResponse =
-      typeof response.data === 'string'
-        ? JSON.parse(response.data)
-        : response.data
+    const data: MapboxSearchResponse = response.data
 
     return data.features?.map(transformFeatureToLocation) || []
   } catch (error) {

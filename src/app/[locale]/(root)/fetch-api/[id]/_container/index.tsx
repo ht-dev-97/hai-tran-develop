@@ -34,8 +34,7 @@ const FetchAPIDetailContainer = () => {
 
         if (!response?.data) return {}
 
-        const data = JSON.parse(response.data)
-        setDogBreed(data?.data || [])
+        setDogBreed(response.data?.data || [])
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
         showToast.error(err.message)
