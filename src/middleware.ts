@@ -1,4 +1,5 @@
 import { clerkMiddleware } from '@clerk/nextjs/server'
+import { geolocation } from '@vercel/functions'
 import createMiddleware from 'next-intl/middleware'
 
 import { routing } from './i18n/routing'
@@ -8,8 +9,7 @@ export default clerkMiddleware((auth, req) => {
     return
   }
 
-  const country =
-    req.geo?.country || req.headers.get('x-vercel-ip-country') || ''
+  const { country = '' } = geolocation(req)
 
   // Create middleware for next-intl
   const intlMiddleware = createMiddleware(routing)

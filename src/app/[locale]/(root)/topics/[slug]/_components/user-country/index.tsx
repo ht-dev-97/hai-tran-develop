@@ -11,7 +11,7 @@ const UserCountry = () => {
   useEffect(() => {
     const fetchCountry = async () => {
       try {
-        const response = await clientFetch.get('/api/user-country')
+        const response = await clientFetch.get('/api/geo')
         if (response && response.data) {
           setCountry(response.data.country)
           setLoading(false)
