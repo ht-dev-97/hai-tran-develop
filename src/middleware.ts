@@ -8,20 +8,25 @@ export default clerkMiddleware((auth, req) => {
     return
   }
 
+  const country =
+    req.geo?.country || req.headers.get('x-vercel-ip-country') || ''
+
   // Create middleware for next-intl
   const intlMiddleware = createMiddleware(routing)
 
   // Call middleware of next-intl
-  return intlMiddleware(req)
+  const intlResponse = intlMiddleware(req)
+
+  // Add x-user-country header
+  intlResponse.headers.set('x-user-country', country)
+
+  return intlResponse
 })
 
 export const config = {
   matcher: [
-    // Combine matcher of both next-intl and Clerk
     '/',
     '/(en|vi)/:path*',
-    '/((?!api|_next|_vercel|.*\\..*).*))',
-    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    '/(api|trpc)(.*)'
+    '/((?!_next|api|.*\\.).*)' // Exclude static files and API routes
   ]
 }

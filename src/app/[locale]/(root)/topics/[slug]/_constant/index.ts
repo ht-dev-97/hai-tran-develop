@@ -9,12 +9,14 @@ import HostIP from '../_components/host-ip'
 import Mapbox from '../_components/mapbox'
 import StickyTitle from '../_components/sticky-title'
 import ToastDemo from '../_components/toast'
+import UserCountry from '../_components/user-country'
 import Zustand from '../_components/zustand'
 
 export const componentsMap: { [key: string]: React.ComponentType } = {
   zustand: Zustand,
   environment: Environment,
   'host-ip': HostIP,
+  'user-country': UserCountry,
   combobox: Combobox,
   'auto-scroll': AutoScroll,
   'sticky-title': StickyTitle,

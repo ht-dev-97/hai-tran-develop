@@ -37,7 +37,7 @@ export const TOPICS = {
     'Glowing Hover',
     'Cursor Effect'
   ],
-  'Route Handlers': ['Environment', 'Host IP'],
+  'Route Handlers': ['Environment', 'Host IP', 'User Country'],
   'Global State': ['Zustand']
 }
 
