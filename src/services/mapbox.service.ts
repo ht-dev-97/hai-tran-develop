@@ -5,7 +5,7 @@ import type {
   MapboxSearchResponse,
   RouteData
 } from '@/types/map'
-import { clientFetch } from '@/utils/client-fetch'
+import { serverFetch } from '@/utils/http'
 import {
   buildMapboxUrl,
   transformFeatureToLocation,
@@ -23,11 +23,9 @@ export const searchPlaces = async (query: string): Promise<Location[]> => {
       { limit: MAPBOX_CONFIG.DEFAULTS.SEARCH_LIMIT.toString() }
     )
 
-    const response = await clientFetch.get(url)
+    const data = await serverFetch.get<MapboxSearchResponse>(url, {}, false)
 
-    if (!response?.data) return []
-
-    const data: MapboxSearchResponse = response.data
+    if (!data) return []
 
     return data.features?.map(transformFeatureToLocation) || []
   } catch (error) {
@@ -49,11 +47,9 @@ export const getRouteDirections = async (
       { geometries: 'geojson' }
     )
 
-    const response = await clientFetch.get(url)
+    const data = await serverFetch.get<MapboxRouteResponse>(url, {}, false)
 
-    if (!response?.data) return null
-
-    const data: MapboxRouteResponse = response.data
+    if (!data) return null
 
     if (!data.routes?.length) return null
 

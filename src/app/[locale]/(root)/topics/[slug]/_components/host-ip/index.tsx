@@ -1,7 +1,11 @@
 'use client'
 
-import { clientFetch } from '@/utils/client-fetch'
+import { clientFetch } from '@/utils/http'
 import { useEffect, useState } from 'react'
+
+interface IpResponse {
+  ip: string
+}
 
 const HostIP = () => {
   const [ip, setIp] = useState<string | null>(null)
@@ -11,11 +15,11 @@ const HostIP = () => {
   useEffect(() => {
     const fetchIP = async () => {
       try {
-        const response = await clientFetch.get('/api/ip')
-        if (response && response.data) {
-          setIp(response.data.ip)
-          setLoading(false)
-        }
+        const data = await clientFetch.get<IpResponse>('/api/ip')
+        if (!data) return
+
+        setIp(data.ip)
+        setLoading(false)
       } catch (err) {
         setError('Failed to fetch IP')
         setLoading(false)

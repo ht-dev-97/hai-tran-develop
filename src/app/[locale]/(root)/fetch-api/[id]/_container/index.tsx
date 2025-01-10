@@ -2,13 +2,17 @@
 
 import { showToast } from '@/components/layout/toast.tsx'
 import { useRouter } from '@/i18n/routing'
-import { clientFetch } from '@/utils/client-fetch'
+import { clientFetch } from '@/utils/http'
 import { ArrowLeftIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 import { BreedData } from '../../_types'
+
+interface DogResponse {
+  data: BreedData
+}
 
 const FetchAPIDetailContainer = () => {
   const [dogBreed, setDogBreed] = useState<BreedData | null>(null)
@@ -28,16 +32,19 @@ const FetchAPIDetailContainer = () => {
     const fetchDogBreedDetail = async () => {
       try {
         setIsLoading(true)
-        const response = await clientFetch.get(
-          `https://dogapi.dog/api/v2/breeds/${id}`
+        const data = await clientFetch.get<DogResponse>(
+          `https://dogapi.dog/api/v2/breeds/${id}`,
+          {},
+          false
         )
 
-        if (!response?.data) return {}
+        if (!data) return
 
-        setDogBreed(response.data?.data || [])
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (err: any) {
-        showToast.error(err.message)
+        setDogBreed(data.data)
+      } catch (err) {
+        showToast.error(
+          err instanceof Error ? err.message : 'Something went wrong'
+        )
       } finally {
         setIsLoading(false)
       }

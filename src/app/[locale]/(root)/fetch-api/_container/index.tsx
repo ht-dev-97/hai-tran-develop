@@ -1,20 +1,34 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from '@/i18n/routing'
-import { serverFetch } from '@/utils/server-fetch'
+import { serverFetch } from '@/utils/http'
 import React from 'react'
 
+interface DogAttributes {
+  name: string
+}
+
+interface Dog {
+  id: string
+  attributes: DogAttributes
+}
+
+interface DogResponse {
+  data: Dog[]
+}
+
 const FetchAPIContainer = async () => {
-  const response = await serverFetch.get('https://dogapi.dog/api/v2/breeds')
+  const data = await serverFetch.get<DogResponse>(
+    'https://dogapi.dog/api/v2/breeds'
+  )
 
-  if (!response?.data) return []
+  if (!data) return []
 
-  const dogs = response.data?.data || []
+  const dogs = data.data || []
 
   if (!dogs.length) return <div>No Dogs</div>
 
   return (
     <div className="flex items-center gap-4 flex-wrap">
-      {dogs.map((dog: any) => (
+      {dogs.map((dog) => (
         <Link key={dog.id} href={`/fetch-api/${dog.id}`} className="p-4 border">
           <p>{dog.attributes.name}</p>
         </Link>

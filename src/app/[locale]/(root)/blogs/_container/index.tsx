@@ -2,7 +2,7 @@
 
 import { showToast } from '@/components/layout/toast.tsx'
 import { Blog } from '@/types/blogs'
-import { clientFetch } from '@/utils/client-fetch'
+import { clientFetch } from '@/utils/http'
 import { useEffect, useState } from 'react'
 
 import BlogList from '../_components/blog-list'
@@ -14,11 +14,10 @@ const BlogsContainer = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await clientFetch.get('/api/blogs')
-        if (response.status !== 200) {
+        const data = await clientFetch.get<Blog[]>('/api/blogs')
+        if (!data) {
           throw new Error('Failed to fetch blogs')
         }
-        const data = response.data
         setBlogs(data)
       } catch (err) {
         showToast.error(

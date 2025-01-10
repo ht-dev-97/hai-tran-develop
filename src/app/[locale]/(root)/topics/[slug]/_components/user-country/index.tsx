@@ -1,7 +1,11 @@
 'use client'
 
-import { clientFetch } from '@/utils/client-fetch'
+import { clientFetch } from '@/utils/http'
 import { useEffect, useState } from 'react'
+
+interface GeoResponse {
+  country: string
+}
 
 const UserCountry = () => {
   const [country, setCountry] = useState<string>('')
@@ -11,11 +15,11 @@ const UserCountry = () => {
   useEffect(() => {
     const fetchCountry = async () => {
       try {
-        const response = await clientFetch.get('/api/geo')
-        if (response && response.data) {
-          setCountry(response.data.country)
-          setLoading(false)
-        }
+        const data = await clientFetch.get<GeoResponse>('/api/geo')
+        if (!data) return
+
+        setCountry(data.country)
+        setLoading(false)
       } catch (err) {
         setError('Failed to fetch Country')
         setLoading(false)

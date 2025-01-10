@@ -1,7 +1,11 @@
 'use client'
 
-import { clientFetch } from '@/utils/client-fetch'
+import { clientFetch } from '@/utils/http'
 import React, { useEffect, useState } from 'react'
+
+interface EnvironmentResponse {
+  environment: string
+}
 
 const Environment = () => {
   const [environment, setEnvironment] = useState<string | null>(null)
@@ -9,11 +13,11 @@ const Environment = () => {
   useEffect(() => {
     const fetchEnvironment = async () => {
       try {
-        const response = await clientFetch.get('/api/environment')
-        if (response && response.data) {
-          const data = response.data
-          setEnvironment(data.environment)
-        }
+        const data =
+          await clientFetch.get<EnvironmentResponse>('/api/environment')
+        if (!data) return
+
+        setEnvironment(data.environment)
       } catch (error) {
         console.error('Error fetching environment:', error)
       }

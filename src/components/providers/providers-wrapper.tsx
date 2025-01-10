@@ -3,6 +3,8 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { AbstractIntlMessages, NextIntlClientProvider } from 'next-intl'
 import { ReactNode } from 'react'
 
+import { SWRProvider } from './swr-provider'
+
 interface ProvidersWrapperProps {
   children: ReactNode
   locale: string
@@ -17,7 +19,7 @@ export function ProvidersWrapper({
   return (
     <ClerkProvider appearance={clerkAppearanceConfig}>
       <NextIntlClientProvider locale={locale} messages={messages}>
-        {children}
+        <SWRProvider>{children}</SWRProvider>
       </NextIntlClientProvider>
     </ClerkProvider>
   )
