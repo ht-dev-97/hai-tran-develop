@@ -25,7 +25,22 @@ export async function generateMetadata({
 
   return {
     title: t('Metadata.title'),
-    description: t('Metadata.description')
+    description: t('Metadata.description'),
+    openGraph: {
+      title: t('Metadata.title'),
+      description: t('Metadata.description'),
+      url: `${process.env.API_BASE_URL}`,
+      images: [
+        {
+          url: `${process.env.API_BASE_URL}/assets/images/open-graph-thumbnail.jpg`,
+          width: 1200,
+          height: 630,
+          alt: t('Metadata.title')
+        }
+      ],
+      siteName: t('Metadata.title'),
+      type: 'website'
+    }
   }
 }
 
