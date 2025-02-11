@@ -1,4 +1,4 @@
-import { showToast } from '@/components/layout/toast.tsx'
+import { showToast } from '@/components/common/toast'
 import React from 'react'
 
 const ToastDemo = () => {

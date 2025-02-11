@@ -1,4 +1,4 @@
-import CustomCursor from '@/components/layout/cursor'
+import CustomCursor from '@/components/common/cursor'
 import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
 import { ProvidersWrapper } from '@/components/providers/providers-wrapper'

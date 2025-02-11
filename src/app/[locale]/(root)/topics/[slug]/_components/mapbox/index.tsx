@@ -1,6 +1,6 @@
 'use client'
 
-import { showToast } from '@/components/layout/toast.tsx'
+import { showToast } from '@/components/common/toast'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { MAPBOX_CONFIG } from '@/configs/mapbox/mapbox.config'
 import { MAP_CONSTANTS } from '@/constants'

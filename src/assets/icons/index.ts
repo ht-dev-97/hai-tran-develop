@@ -1,1 +1,2 @@
-export * from './close-circle'
+export * from './close-circle-icon'
+export * from './user-icon'

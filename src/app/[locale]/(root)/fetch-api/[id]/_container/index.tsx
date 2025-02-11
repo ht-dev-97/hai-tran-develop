@@ -1,6 +1,6 @@
 'use client'
 
-import { showToast } from '@/components/layout/toast.tsx'
+import { showToast } from '@/components/common/toast'
 import { useRouter } from '@/i18n/routing'
 import { clientFetch } from '@/utils/http'
 import { ArrowLeftIcon } from 'lucide-react'

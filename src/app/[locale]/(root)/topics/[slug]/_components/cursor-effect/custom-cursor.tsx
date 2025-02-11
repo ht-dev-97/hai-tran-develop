@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-export function CustomCursor() {
+const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
@@ -91,3 +91,5 @@ export function CustomCursor() {
     />
   )
 }
+
+export default CustomCursor

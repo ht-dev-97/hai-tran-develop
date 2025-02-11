@@ -1,10 +1,9 @@
 'use client'
 
+import CustomCursor from '@/components/common/cursor'
 import { LIST_MENU } from '@/constants'
 import { Link } from '@/i18n/routing'
 import React from 'react'
-
-import { CustomCursor } from './custom-cursor'
 
 const CursorEffect = () => {
   return (

@@ -1,5 +1,6 @@
 'use client'
 
+import { Icon } from '@/components/common'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -9,13 +10,13 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { SignInButton, SignOutButton, useUser } from '@clerk/nextjs'
-import { LogOut, User } from 'lucide-react'
+import { LogOut } from 'lucide-react'
 import React from 'react'
 
 const UserAction = () => {
   const { isLoaded, isSignedIn, user } = useUser()
 
-  if (!isLoaded) return <User />
+  if (!isLoaded) return <Icon name="user" />
 
   return (
     <>
@@ -62,7 +63,7 @@ const UserAction = () => {
         </DropdownMenu>
       ) : (
         <SignInButton>
-          <User className="cursor-pointer" />
+          <Icon name="user" className="cursor-pointer" />
         </SignInButton>
       )}
     </>

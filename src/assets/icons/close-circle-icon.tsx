@@ -1,7 +1,7 @@
 import { SVGProps } from '@/types'
 import React from 'react'
 
-export const CloseCircle = (props: SVGProps) => {
+export const CloseCircleIcon = (props: SVGProps) => {
   return (
     <svg
       width="20"

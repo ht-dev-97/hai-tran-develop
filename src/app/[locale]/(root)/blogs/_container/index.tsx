@@ -1,6 +1,6 @@
 'use client'
 
-import { showToast } from '@/components/layout/toast.tsx'
+import { showToast } from '@/components/common'
 import { Blog } from '@/types/blogs'
 import { clientFetch } from '@/utils/http'
 import { useEffect, useState } from 'react'
