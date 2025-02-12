@@ -31,9 +31,9 @@
     --chart-5: 27 87% 67%;
 
     /* brand colors   */
-    --brand-primary: 48 95% 58%;
-    --brand-text-main: 210 5% 9%;
-    --brand-bg-box: 0 0% 99%;
+    --brand-primary: 250, 209, 46; /* #FAD12E */
+    --brand-text-main: 0, 23, 46; /* #00172E */
+    --brand-bg-box: 252, 252, 252; /* #FCFCFC */
   }
 
   .dark {
@@ -63,9 +63,9 @@
     --chart-5: 340 75% 55%;
 
     /* brand colors   */
-    --brand-primary: 48 95% 58%;
-    --brand-text-main: 0 0% 99%;
-    --brand-bg-box: 0 0% 11%;
+    --brand-primary: 250, 209, 46; /* #FAD12E */
+    --brand-text-main: 252, 252, 252; /* #FCFCFC */
+    --brand-bg-box: 28, 28, 28; /* #1C1C1C */
   }
 }
 
