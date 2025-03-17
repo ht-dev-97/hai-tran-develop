@@ -1,11 +1,11 @@
 'use client'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { TOPICS } from '@/constants'
 import { useTranslations } from 'next-intl'
 import React from 'react'
 
 import TopicBlock from '../_components/topic-block'
+import { TOPICS } from '../_constant'
 
 const TopicsContainer = () => {
   const t = useTranslations('TopicsPage')

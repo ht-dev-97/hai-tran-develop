@@ -7,6 +7,7 @@ import FormDemo from '../_components/form-demo'
 import GlowingHover from '../_components/glowing-hover'
 import HostIP from '../_components/host-ip'
 import Mapbox from '../_components/mapbox'
+import PositionPoint from '../_components/position-point'
 import StickyTitle from '../_components/sticky-title'
 import ToastDemo from '../_components/toast'
 import UserCountry from '../_components/user-country'
@@ -25,7 +26,8 @@ export const componentsMap: { [key: string]: React.ComponentType } = {
   mapbox: Mapbox,
   toast: ToastDemo,
   'glowing-hover': GlowingHover,
-  'cursor-effect': CursorEffect
+  'cursor-effect': CursorEffect,
+  'position-point': PositionPoint
 }
 
 export const GLOWING_CARDS = [

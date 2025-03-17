@@ -25,22 +25,6 @@ export const LIST_MENU = [
   { href: '/fetch-api', name: 'fetch-api', label: 'Fetch API' }
 ] as const
 
-export const TOPICS = {
-  'UI NextJS': [
-    'Combobox',
-    'Auto Scroll',
-    'Sticky Title',
-    'Carousel',
-    'Form Demo',
-    'MapBox',
-    'Toast',
-    'Glowing Hover',
-    'Cursor Effect'
-  ],
-  'Route Handlers': ['Environment', 'Host IP', 'User Country'],
-  'Global State': ['Zustand']
-}
-
 export const MAP_CONSTANTS = {
   DEFAULT_VIEW_STATE: {
     longitude: -73.935242,
