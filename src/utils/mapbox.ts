@@ -1,5 +1,5 @@
 import { MAPBOX_CONFIG } from '@/configs/mapbox/mapbox.config'
-import { Location, MapboxFeature } from '@/types/map'
+import { Location, MapboxFeature } from '@/types'
 
 export const validateMapboxToken = (): void => {
   if (!MAPBOX_CONFIG.ACCESS_TOKEN) {

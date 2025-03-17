@@ -1,4 +1,4 @@
-import { Blog } from '@/types/blogs'
+import { Blog } from '@/types'
 
 export interface BlogContent {
   content: string

@@ -1,4 +1,4 @@
-import { Blog } from '@/types/blogs'
+import { Blog } from '@/types'
 import fs from 'fs'
 import matter from 'gray-matter'
 

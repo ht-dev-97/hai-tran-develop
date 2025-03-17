@@ -1,7 +1,7 @@
 'use client'
 
 import { showToast } from '@/components/common'
-import { Blog } from '@/types/blogs'
+import { Blog } from '@/types'
 import { clientFetch } from '@/utils/http'
 import { useEffect, useState } from 'react'
 

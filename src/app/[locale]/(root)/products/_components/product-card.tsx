@@ -1,7 +1,7 @@
 'use client'
 
 import { useProductActions } from '@/hooks/use-products'
-import { Product } from '@/types/products'
+import { Product } from '@/types'
 import React, { useState } from 'react'
 
 interface ProductProps {

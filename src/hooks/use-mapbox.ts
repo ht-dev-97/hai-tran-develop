@@ -1,5 +1,5 @@
 import { getRouteDirections, searchPlaces } from '@/services/mapbox.service'
-import { Location } from '@/types/map'
+import { Location } from '@/types'
 import { useCallback, useState } from 'react'
 
 export const useMapbox = () => {

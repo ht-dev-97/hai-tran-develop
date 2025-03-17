@@ -1,8 +1,4 @@
-import type {
-  CreateProductData,
-  Product,
-  UpdateProductData
-} from '@/types/products'
+import type { CreateProductData, Product, UpdateProductData } from '@/types'
 import { clientFetch } from '@/utils/http/client-fetch'
 import useSWR, { useSWRConfig } from 'swr'
 

@@ -1,7 +1,7 @@
 import { Badge } from '@/components/ui/badge'
 import { Card, CardHeader } from '@/components/ui/card'
 import { Link } from '@/i18n/routing'
-import { Blog } from '@/types/blogs'
+import { Blog } from '@/types'
 import fs from 'fs'
 import matter from 'gray-matter'
 import { CalendarDays, Clock } from 'lucide-react'

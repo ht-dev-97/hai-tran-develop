@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
 import { useMapStore } from '@/stores'
-import type { Location } from '@/types/map'
+import { Location } from '@/types'
 import { Check, MapPin, Navigation } from 'lucide-react'
 import { useCallback, useState } from 'react'
 

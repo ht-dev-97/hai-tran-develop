@@ -1,7 +1,7 @@
 'use client'
 
 import { useProductActions } from '@/hooks/use-products'
-import { CreateProductData } from '@/types/products'
+import { CreateProductData } from '@/types'
 import { useState } from 'react'
 
 const initialProduct: CreateProductData = {

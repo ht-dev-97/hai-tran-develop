@@ -4,7 +4,7 @@ import type {
   MapboxRouteResponse,
   MapboxSearchResponse,
   RouteData
-} from '@/types/map'
+} from '@/types'
 import { serverFetch } from '@/utils/http'
 import {
   buildMapboxUrl,

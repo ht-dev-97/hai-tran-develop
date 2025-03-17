@@ -1,6 +1,6 @@
 import { MAP_CONSTANTS } from '@/constants'
 import { getRouteDirections, searchPlaces } from '@/services/mapbox.service'
-import type { Location, RouteData, ViewState } from '@/types/map'
+import type { Location, RouteData, ViewState } from '@/types'
 import { create } from 'zustand'
 
 interface MapState {
