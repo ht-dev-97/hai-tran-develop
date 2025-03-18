@@ -1,6 +1,6 @@
 'use client'
 
-import { useProducts } from '@/hooks/use-products'
+import { useProducts } from '@/hooks'
 import React, { useState } from 'react'
 
 import ProductCard from './product-card'

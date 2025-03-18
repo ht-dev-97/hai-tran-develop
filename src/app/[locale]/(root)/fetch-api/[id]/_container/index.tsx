@@ -1,6 +1,6 @@
 'use client'
 
-import { showToast } from '@/components/common/toast'
+import { useCustomToast } from '@/hooks'
 import { useRouter } from '@/i18n/routing'
 import { clientFetch } from '@/utils/http'
 import { ArrowLeftIcon } from 'lucide-react'
@@ -22,6 +22,8 @@ const FetchAPIDetailContainer = () => {
 
   const router = useRouter()
 
+  const toast = useCustomToast()
+
   const t = useTranslations('FetchAPIPage')
 
   const handleBackToDogs = () => {
@@ -42,9 +44,11 @@ const FetchAPIDetailContainer = () => {
 
         setDogBreed(data.data)
       } catch (err) {
-        showToast.error(
-          err instanceof Error ? err.message : 'Something went wrong'
-        )
+        toast.custom.error({
+          title: 'Error',
+          description:
+            err instanceof Error ? err.message : 'Something went wrong'
+        })
       } finally {
         setIsLoading(false)
       }

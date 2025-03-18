@@ -1,6 +1,6 @@
 'use client'
 
-import { showToast } from '@/components/common'
+import { useCustomToast } from '@/hooks'
 import { Blog } from '@/types'
 import { clientFetch } from '@/utils/http'
 import { useEffect, useState } from 'react'
@@ -11,6 +11,8 @@ const BlogsContainer = () => {
   const [blogs, setBlogs] = useState<Blog[]>([])
   const [loading, setLoading] = useState(true)
 
+  const toast = useCustomToast()
+
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -20,9 +22,11 @@ const BlogsContainer = () => {
         }
         setBlogs(data)
       } catch (err) {
-        showToast.error(
-          err instanceof Error ? err.message : 'Something went wrong'
-        )
+        toast.custom.error({
+          title: 'Error',
+          description:
+            err instanceof Error ? err.message : 'Something went wrong'
+        })
       } finally {
         setLoading(false)
       }

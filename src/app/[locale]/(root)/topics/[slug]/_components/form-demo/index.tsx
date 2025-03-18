@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
-import { showToast } from '@/components/common/toast'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -13,6 +11,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { useCustomToast } from '@/hooks'
 import { reportBugSchema } from '@/lib/validations/report-bug.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CircleX } from 'lucide-react'
@@ -20,22 +19,14 @@ import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 const FormDemo = () => {
   const [files, setFiles] = useState<
     { name: string; size: number; file: File }[]
   >([])
 
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const toast = useCustomToast()
 
   const form = useForm<z.infer<typeof reportBugSchema>>({
     resolver: zodResolver(reportBugSchema)
@@ -50,7 +41,10 @@ const FormDemo = () => {
       const isVideo = file.type.startsWith('video/')
 
       if (!isImage && !isVideo) {
-        showToast.error(`File ${file.name} is not an image or video.`)
+        toast.custom.error({
+          title: 'Error',
+          description: `File ${file.name} is not an image or video.`
+        })
         return false
       }
       return true
@@ -81,7 +75,10 @@ const FormDemo = () => {
         fileInputRef.current.value = ''
       }
     } else {
-      showToast.error('Total file size exceeds 20MB.')
+      toast.custom.error({
+        title: 'Error',
+        description: 'Total file size exceeds 20MB.'
+      })
     }
   }
 
@@ -120,10 +117,17 @@ const FormDemo = () => {
 
       console.log('dataSubmit', dataSubmit)
 
-      showToast.success('Successfully submitted')
+      toast.custom.success({
+        title: 'Success!',
+        description: 'Successfully submitted'
+      })
       resetFormAndState()
-    } catch (error: any) {
-      showToast.error(error.message)
+    } catch (error) {
+      toast.custom.error({
+        title: 'Error',
+        description:
+          error instanceof Error ? error.message : 'An unknown error occurred'
+      })
     }
   }
 

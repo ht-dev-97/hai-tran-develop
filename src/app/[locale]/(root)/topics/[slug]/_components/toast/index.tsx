@@ -1,81 +1,127 @@
-import { showToast } from '@/components/common/toast'
+import { Button } from '@/components/ui/button'
+import { useCustomToast } from '@/hooks'
 import React from 'react'
 
 const ToastDemo = () => {
-  const handleSuccessClick = () => {
-    showToast.success('Success message', {
-      description: 'This is a success message',
-      action: {
-        label: 'Undo',
-        onClick: () => console.log('Undo clicked')
-      }
-    })
-  }
-
-  const handleErrorClick = () => {
-    showToast.error('Error message', {
-      description: 'This is an error message'
-    })
-  }
-
-  const handleInfoClick = () => {
-    showToast.info('Info message', {
-      description: 'This is an info message'
-    })
-  }
-
-  const handleWarningClick = () => {
-    showToast.warning('Warning message', {
-      description: 'This is a warning message'
-    })
-  }
-
-  const handlePromiseClick = () => {
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        Math.random() > 0.5 ? resolve('Success') : reject('Error')
-      }, 2000)
-    })
-
-    showToast.promise(promise, {
-      loading: 'Loading...',
-      success: 'Operation completed successfully',
-      error: 'Operation failed'
-    })
-  }
+  const toast = useCustomToast()
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 p-24">
-      <button
-        onClick={handleSuccessClick}
-        className="rounded-md bg-green-500 px-4 py-2 text-white hover:bg-green-600"
-      >
-        Show Success Toast
-      </button>
-      <button
-        onClick={handleErrorClick}
-        className="rounded-md bg-red-500 px-4 py-2 text-white hover:bg-red-600"
-      >
-        Show Error Toast
-      </button>
-      <button
-        onClick={handleInfoClick}
-        className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-      >
-        Show Info Toast
-      </button>
-      <button
-        onClick={handleWarningClick}
-        className="rounded-md bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600"
-      >
-        Show Warning Toast
-      </button>
-      <button
-        onClick={handlePromiseClick}
-        className="rounded-md bg-purple-500 px-4 py-2 text-white hover:bg-purple-600"
-      >
-        Show Promise Toast
-      </button>
+    <div className="grid gap-8">
+      <div>
+        <h2 className="text-xl font-semibold mb-4">Sonner Built-in Toasts</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Button
+            onClick={() =>
+              toast.success({
+                title: 'Success!',
+                description: 'The action was successfully completed.'
+              })
+            }
+            className="bg-green-500 hover:bg-green-600"
+          >
+            Success Toast
+          </Button>
+
+          <Button
+            onClick={() =>
+              toast.error({
+                title: 'Error!',
+                description: 'An error occurred while performing the action.',
+                duration: 5000
+              })
+            }
+            className="bg-red-500 hover:bg-red-600"
+          >
+            Error Toast (5s)
+          </Button>
+
+          <Button
+            onClick={() =>
+              toast.info({
+                title: 'Information',
+                description: 'This is an important information message.'
+              })
+            }
+            className="bg-blue-500 hover:bg-blue-600"
+          >
+            Info Toast
+          </Button>
+
+          <Button
+            onClick={() =>
+              toast.warning({
+                title: 'Warning!',
+                description: 'Pay attention to this notification.',
+                duration: 6000
+              })
+            }
+            className="bg-amber-500 hover:bg-amber-600"
+          >
+            Warning Toast (6s)
+          </Button>
+        </div>
+      </div>
+
+      <div>
+        <h2 className="text-xl font-semibold mb-4">
+          Custom Toasts with Progress Bar
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Button
+            onClick={() =>
+              toast.custom.success({
+                title: 'Success!',
+                description: 'The action was successfully completed.'
+              })
+            }
+            variant="outline"
+            className="border-green-500 text-green-500 hover:bg-green-50"
+          >
+            Custom Success
+          </Button>
+
+          <Button
+            onClick={() =>
+              toast.custom.error({
+                title: 'Error!',
+                description: 'An error occurred while performing the action.',
+                duration: 5000
+              })
+            }
+            variant="outline"
+            className="border-red-500 text-red-500 hover:bg-red-50"
+          >
+            Custom Error (5s)
+          </Button>
+
+          <Button
+            onClick={() =>
+              toast.custom.info({
+                title: 'Information',
+                description: 'This is an important information message.'
+              })
+            }
+            variant="outline"
+            className="border-blue-500 text-blue-500 hover:bg-blue-50"
+          >
+            Custom Info
+          </Button>
+
+          <Button
+            onClick={() =>
+              toast.custom.warning({
+                title: 'Warning!',
+                description: 'Pay attention to this notification.',
+                duration: 6000
+              })
+            }
+            variant="outline"
+            className="border-amber-500 text-amber-500 hover:bg-amber-50"
+          >
+            Custom Warning (6s)
+          </Button>
+        </div>
+      </div>
     </div>
   )
 }

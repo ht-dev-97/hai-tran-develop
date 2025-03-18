@@ -1,9 +1,9 @@
 'use client'
 
-import { showToast } from '@/components/common/toast'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { MAPBOX_CONFIG } from '@/configs/mapbox/mapbox.config'
 import { MAP_CONSTANTS } from '@/constants'
+import { useCustomToast } from '@/hooks'
 import { useMapStore } from '@/stores'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { useEffect } from 'react'
@@ -28,18 +28,17 @@ const MapComponent = () => {
     getCurrentLocation
   } = useMapStore()
 
+  const toast = useCustomToast()
+
   useEffect(() => {
     getCurrentLocation()
   }, [getCurrentLocation])
 
   useEffect(() => {
     if (error) {
-      showToast.success('Success message', {
-        description: error.message,
-        action: {
-          label: 'Undo',
-          onClick: () => console.log('Undo clicked')
-        }
+      toast.custom.success({
+        title: 'Success!',
+        description: 'Successfully detected location.'
       })
     }
   }, [error])

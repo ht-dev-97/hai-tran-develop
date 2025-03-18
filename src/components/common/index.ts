@@ -1,3 +1,3 @@
 export * from './icon'
 export * from './cursor'
-export * from './toast'
+export * from './toast-notification'
