@@ -6,13 +6,13 @@ interface IconProps extends SVGProps {
   name: 'close-circle' | 'user'
 }
 
-const ICONCOMPONENTS = {
+const ICON_COMPONENTS = {
   'close-circle': CloseCircleIcon,
   user: UserIcon
 }
 
 export const Icon = ({ name, ...props }: IconProps) => {
-  const IconComponent = ICONCOMPONENTS[name]
+  const IconComponent = ICON_COMPONENTS[name]
 
   if (!IconComponent) {
     console.warn(`Icon "${name}" not found`)
