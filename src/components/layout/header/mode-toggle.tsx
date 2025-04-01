@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { THEMS } from '@/constants'
+import { THEMES } from '@/constants'
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import * as React from 'react'
@@ -25,7 +25,7 @@ export function ModeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="bg-colorBrand-bg-box">
-        {THEMS.map((theme) => (
+        {THEMES.map((theme) => (
           <DropdownMenuItem
             key={theme.value}
             onClick={() => setTheme(theme.value)}
