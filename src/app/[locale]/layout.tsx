@@ -2,7 +2,6 @@ import CustomCursor from '@/components/common/cursor'
 import Footer from '@/components/layout/footer'
 import Header from '@/components/layout/header'
 import { ProvidersWrapper } from '@/components/providers/providers-wrapper'
-import { ThemeProvider } from '@/components/providers/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
 import { Abolition, SNPro } from '@/configs/fonts/custom-fonts'
 import { locales } from '@/i18n/request'
@@ -61,26 +60,19 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <ProvidersWrapper locale={locale} messages={messages}>
-        <body className={`${Abolition.variable} ${SNPro.variable}`}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <CustomCursor />
-            <div className="w-full flex flex-col min-h-screen">
-              <Header />
-              <main className="flex-1 wrapper mx-auto py-8 overflow-auto">
-                {children}
-              </main>
-              <Toaster />
-              <Footer />
-            </div>
-          </ThemeProvider>
-        </body>
-      </ProvidersWrapper>
+      <body className={`${Abolition.variable} ${SNPro.variable}`}>
+        <ProvidersWrapper locale={locale} messages={messages}>
+          <CustomCursor />
+          <div className="w-full flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-1 wrapper mx-auto py-8 overflow-auto">
+              {children}
+            </main>
+            <Toaster />
+            <Footer />
+          </div>
+        </ProvidersWrapper>
+      </body>
     </html>
   )
 }
